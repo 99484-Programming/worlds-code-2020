@@ -39,7 +39,7 @@ void auton_route_testing_2 () // 1 cube i think
 void auton_route_testing_1 () // stacking testing
 {
   a_outtake_small();
-  a_wait(500);
+  a_wait(100);
 
   a_tilter_up();
   a_wait(500);
