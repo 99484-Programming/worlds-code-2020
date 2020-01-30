@@ -27,7 +27,7 @@ void auton_route_testing_3 ()
 
 void auton_route_testing_2 () // 1 cube i think
 {
-  a_drive(-50, 1000);
+  a_drive(-50, 950);
 
   a_drive(100, 1250);
 
