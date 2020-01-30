@@ -553,7 +553,7 @@ void auton_route_13 ()
   sleep(20);
 
   right_back.resetRotation(); // turn left
-  while (right_back.rotation(rotationUnits::raw) > -650)
+  while (right_back.rotation(rotationUnits::raw) > -600)
   {
     Chassis_right(-50);
     Chassis_left(50);
