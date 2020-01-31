@@ -14,6 +14,7 @@ Motor right_back  ( "right back"   , vex::PORT1 , true    , false , false    , f
 Motor intake_l    ( "left intake"  , vex::PORT16, true    , false , false    , false   , false   , true  , false );
 Motor intake_r    ( "right intake" , vex::PORT9 , false   , false , false    , false   , false   , true  , false );
 Motor tilter      ( "tilter"       , vex::PORT5 , true    , false , false    , false   , false   , true  , false );
+Motor arm         ("arm"           , vex::PORT11, false   , false , false    , false   , false   , true ,  false );
 
 std::list<Motor> Motors = {left_front  ,
 /* ==================== */ left_back   ,

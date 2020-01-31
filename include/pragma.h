@@ -16,6 +16,7 @@ extern Motor right_back  ;
 extern Motor intake_l    ;
 extern Motor intake_r    ;
 extern Motor tilter      ;
+Extern Motor arm         ;
 
 extern std::list<Motor> Motors ;
 
