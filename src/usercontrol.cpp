@@ -111,8 +111,8 @@ void user_arcade_1 ()
 }
 // */
 
-// intake control =================================================================================
-void user_intake_simple ()
+// intake control 1 ===============================================================================
+void user_intake_1 ()
 {
   if (ctlr_buttonX && !ctlr_buttonA)
   {
@@ -129,165 +129,31 @@ void user_intake_simple ()
 }
 
 // intake control 2 ===============================================================================
-// 1 button toggle for intake in
-// 1 button toggle for intake out
-// 1 button press for short outake
-// A for intake toggle, X for outtake, Y for short outtake
-int user_intake_2_mode = 0;  // -1 is outtake, 0 is still, 1 is intake, 2 is short outtake
-int user_intake_2_time = 0;  // for short outtake
+// press R1 for fast intake
+// press R2 for slow intake
+// hold L1 for  outtaking
 
 void user_intake_2 ()
 {
-  if (ctlr_buttonA_pressed)
+  if (ctlr_buttonR1) // fast intaking
   {
-    if (user_intake_2_mode == 1 || user_intake_2_mode == -1)
-    {
-      user_intake_2_mode = 0;
-    }
-    else
-    {
-      user_intake_2_mode = 1;
-    }
+    intake_set(user_intake_2_intake_fast_power);
   }
-  else if (ctlr_buttonX_pressed)
+  else if (ctlr_buttonR2) // slow intake
   {
-    if (user_intake_2_mode == -1)
-    {
-      user_intake_2_mode = 0;
-    }
-    else
-    {
-      user_intake_2_mode = -1;
-    }
+    intake_set(user_intake_2_intake_slow_power);
   }
-  else if (ctlr_buttonY_pressed)
+  else if (ctlr_buttonL1) // outtaking
   {
-    user_intake_2_mode = 2;
-    user_intake_2_time = 0;
-  }
-
-  if (user_intake_2_mode == 1)
-  {
-    intake_set(100);
-  }
-  else if (user_intake_2_mode == 0)
-  {
-    intake_set(0);
-  }
-  else if (user_intake_2_mode == -1)
-  {
-    intake_set(-80);
-  }
-  else if (user_intake_2_mode == 2)
-  {
-    user_intake_2_time++;
-    if (user_intake_2_time >= user_intake_2_wait_time)
-    {
-      user_intake_2_mode = 0;
-    }
-    intake_set(-50);
-  }
-}
-
-// intake control 3 ===============================================================================
-// press A to toggle for intaking
-// hold Y for slow outtaking
-// hold X for fast outtaking
-
-bool user_intake_3_mode = 0; // 0 is off (or outtake) and 1 is intake
-
-void user_intake_3 ()
-{
-  // toggle intake mode based on input
-  // if A is pressed -> toggle, if X or Y are pressed -> 0, else -> don't change
-  user_intake_3_mode = (ctlr_buttonA_pressed) ? ((user_intake_3_mode) ? 0 : 1) : ((ctlr_buttonY || ctlr_buttonX || ctlr_buttonB) ? 0 : user_intake_3_mode) ;
-
-  if (user_intake_3_mode) // if intaking
-  {
-    intake_set(user_intake_3_intake_fast_power);
-  }
-  else // if still or outtaking
-  {
-    if (ctlr_buttonX)
-    {
-      intake_set(user_intake_3_outtake_slow_power);
-    }
-    else if (ctlr_buttonY)
-    {
-      intake_set(user_intake_3_outtake_fast_power);
-    }
-    else if (ctlr_buttonB)
-    {
-      intake_set(user_intake_3_intake_slow_power);
-    }
-    else
-    {
-      intake_set(0);
-    }
-  }
-}
-
-// intake control 4 ===============================================================================
-// press L1 for fast intake
-// press L2 for slow intake
-// hold "none" for slow outtaking
-// hold X for fast outtaking
-
-void user_intake_4 ()
-{
-  if (ctlr_buttonR1) // if intaking
-  {
-    intake_set(user_intake_4_intake_fast_power);
-  }
-  else if (ctlr_buttonL1)
-  {
-    intake_set(user_intake_4_intake_slow_power);
-  }
-  else if (ctlr_buttonR2)
-  {
-    intake_set(user_intake_4_outtake_fast_power);
-  }
-  else if (false)
-  {
-    intake_set(user_intake_4_outtake_slow_power);
+    intake_set(user_intake_2_outtake_fast_power);
   }
   else
   {
     intake_set(0);
-  }
-}
-
-// // intake control 5 ===============================================================================
-// press L1 for fast intake
-// press L2 for slow intake
-// hold "none" for slow outtaking
-// hold X for fast outtaking
-
-void user_intake_5 ()
-{
-  if (ctlr_buttonR1) // if intaking
-  {
-    intake_set(user_intake_5_intake_fast_power);
-  }
-  else if (ctlr_buttonL1)
-  {
-    intake_set(user_intake_5_intake_slow_power);
-  }
-  else if (ctlr_buttonR2)
-  {
-    intake_set(user_intake_5_outtake_fast_power);
-  }
-  else if (false)
-  {
-    intake_set(user_intake_5_outtake_slow_power);
-  }
-  else
-  {
-    intake_set(0);
-    if (tilter.rotation_get() < user_tilter_2_down_pos_2 + 300 && ctlr_buttonUP)
-    {
-      intake_set(-90);
-    }
+    // if (tilter.rotation_get() < user_tilter_2_down_pos_2 + 300 && ctlr_buttonUP)
+    // {
+    //   intake_set(-90);
+    // }
   }
 }
 
@@ -415,97 +281,6 @@ void user_tilter_3 ()
     } else if (user_tilter_3_setup_done) {
       tilter.update_power_mode_set(0);
       tilter.set_target(0);
-    }
-  }
-}
-
-// button Y control ===============================================================================
-int button_Y_1_stage = 0;
-
-void button_Y_1_tilter ()
-{
-  if (tilter.rotation_get() > 300)
-  {
-    tilter.set_target(-50);
-  }
-  else if (tilter.rotation_get() < 0)
-  {
-    tilter.set_target(0);
-  }
-  else
-  {
-    tilter.set_target(-20);
-  }
-}
-void button_Y_1 ()
-{
-  // start the motion (button input)
-  if (ctlr_buttonY_pressed && button_Y_1_stage == 0)
-  {
-    button_Y_1_stage = 1;
-    chassis_reset_rotation();
-  }
-  // stop the macro if the button is let go of
-  if (button_Y_1_stage != 0 && ctlr_buttonY == 0)
-  {
-    button_Y_1_stage = 0;
-  }
-
-  if (button_Y_1_stage == 1) // backwards
-  {
-    // move tilter down
-    button_Y_1_tilter();
-    // chassis turn
-    chassis_set(-1000);
-
-    // done condition
-    if (left_front.rotation_get() < -200)
-    {
-      chassis_reset_rotation();
-      button_Y_1_stage += 1;
-    }
-  }
-  if (button_Y_1_stage == 2) // turn
-  {
-    // move tilter down
-    button_Y_1_tilter();
-    // chassis turn
-    left_set(20);
-    right_set(-100);
-
-    // done condition
-    if (right_front.rotation_get() < -1250)
-    {
-      chassis_reset_rotation();
-      button_Y_1_stage += 1;
-    }
-  }
-  else if (button_Y_1_stage == 3) // backwards
-  {
-    // move tilter down
-    button_Y_1_tilter();
-    // chassis straight back
-    chassis_set(-100);
-
-    // done condition
-    if (left_front.rotation_get() < -2250)
-    {
-      chassis_reset_rotation();
-      button_Y_1_stage += 1;
-    }
-  }
-  else if (button_Y_1_stage == 4)
-  {
-    // move tilter down
-    button_Y_1_tilter();
-    // turn again
-    left_set(10);
-    right_set(-100);
-    
-    // done condition
-    if (right_front.rotation_get() < -1250)
-    {
-      button_Y_1_stage = 0;
     }
   }
 }

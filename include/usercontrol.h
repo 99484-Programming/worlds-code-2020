@@ -18,7 +18,7 @@ void user_tank () ;
 // tanks ctrl w/ threshold and fast/slow ==========================================================
 #define user_tank_2_fast_multiplier 1.0
 #define user_tank_2_slow_multiplier 0.6
-#define user_tank_2_turn_multiplier 0.6
+#define user_tank_2_turn_multiplier 1.0
 
 extern int user_tank_2_mode                ; // 0 is slow, 1 is fast
 extern double user_tank_2_speed_multiplier ;
@@ -35,45 +35,16 @@ extern int user_arcade_1_mode ; // 0 is slow, 1 is fast
 void user_arcade_1 () ;
 // */
 
-// intake control =================================================================================
-void user_intake_simple () ;
+// intake control 1 ===============================================================================
+void user_intake_1 () ;
 
 // intake control 2 ===============================================================================
-// 1 button toggle for intake in
-// 1 button toggle for intake out
-// A for intake toggle, X for outtake
-#define user_intake_2_wait_time 10
-
-extern int user_intake_2_time ;
-extern int user_intake_2_mode ;  // -1 is outtake, 0 is still, 1 is intake
+#define user_intake_2_intake_fast_power   90
+#define user_intake_2_intake_slow_power   40
+#define user_intake_2_outtake_slow_power -40
+#define user_intake_2_outtake_fast_power -90
 
 void user_intake_2 () ;
-
-// intake control 3 ===============================================================================
-#define user_intake_3_intake_fast_power   90
-#define user_intake_3_intake_slow_power   40
-#define user_intake_3_outtake_slow_power -40
-#define user_intake_3_outtake_fast_power -90
-
-extern bool user_intake_3_mode ;
-
-void user_intake_3 () ;
-
-// intake control 4 ===============================================================================
-#define user_intake_4_intake_fast_power   90
-#define user_intake_4_intake_slow_power   40
-#define user_intake_4_outtake_slow_power -40
-#define user_intake_4_outtake_fast_power -90
-
-void user_intake_4 () ;
-
-// intake control 5 ===============================================================================
-#define user_intake_5_intake_fast_power   90
-#define user_intake_5_intake_slow_power   40
-#define user_intake_5_outtake_slow_power -40
-#define user_intake_5_outtake_fast_power -90
-
-void user_intake_5 () ;
 
 // tilter control 1 ===============================================================================
 #define user_tilter_1_up_power   100
@@ -115,11 +86,5 @@ extern bool user_tilter_3_setup_done ;
 extern int user_tilter_3_setup_count ;
  
 void user_tilter_3 () ;
-
-// button Y control ===============================================================================
-extern int button_Y_stage ;
-
-void button_Y_1_tilter () ;
-void button_Y_1 () ;
 
 #endif
