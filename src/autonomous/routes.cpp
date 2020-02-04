@@ -29,25 +29,12 @@ void auton_route_testing_2 () // 1 cube i think
 {
 }
 
-
-
 void auton_route_testing_1 () // stacking testing
 {
-  a_outtake_small();
+  auton_intake_1_in();
+  a_wait(1000);
+  auton_intake_1_stop();
   a_wait(100);
-
-  a_tilter_up();
-  a_wait(500);
-
-  a_drive(15, 500);
-
-  a_tilter_mid();
-  a_wait(250);
-
-  a_drive(-50, 750);
-
-  a_tilter_down();
-  a_wait(500);
 }
 
 // blank and template
