@@ -11,7 +11,7 @@
 // recording mode =================================================================================
 #define RECORDING_MODE 0
 // auton selection ================================================================================
-#define AUTON_ROUTE 0
+#define AUTON_ROUTE -1
 
 // actions inside this functions will be performed once  after the robot is powered on ============
 void pre_auton( void )
