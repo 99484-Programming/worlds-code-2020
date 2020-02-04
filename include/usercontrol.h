@@ -13,7 +13,7 @@
 #define ARCADE_DRIVE_JOYSTICK_THRESHOLD 10
 
 // simple tank ctrl w/ threshold ==================================================================
-void user_tank () ;
+void user_tank_1 () ;
 
 // tanks ctrl w/ threshold and fast/slow ==========================================================
 #define user_tank_2_fast_multiplier 1.0
@@ -54,15 +54,15 @@ void user_tilter_1 () ;
 
 // tilter control 2 - slows down near the top =====================================================
 #define user_tilter_2_up_power_super_fast   100
-#define user_tilter_2_up_power_fast          50
-#define user_tilter_2_up_power_slow          30
+#define user_tilter_2_up_power_fast          30
+#define user_tilter_2_up_power_slow          20
 #define user_tilter_2_down_power_fast       -90
 #define user_tilter_2_down_power_slow       -60
 #define user_tilter_2_down_power_super_slow -20
 
-#define user_tilter_2_up_pos_1   1300
-#define user_tilter_2_up_pos_2   1600
-#define user_tilter_2_up_pos_3   2550
+#define user_tilter_2_up_pos_1   1500
+#define user_tilter_2_up_pos_2   2250
+#define user_tilter_2_up_pos_3   2850
 #define user_tilter_2_down_pos_1  300
 #define user_tilter_2_down_pos_2  100
 
