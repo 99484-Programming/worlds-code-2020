@@ -1,7 +1,7 @@
 #include "usercontrol.h"
 
 // simple tank ctrl w/ threshold ==================================================================
-void user_tank ()
+void user_tank_1 ()
 {
   // set left power (take into account the threshold)
   left_set(ctlr_axis3);
@@ -139,7 +139,7 @@ void user_intake_2 ()
   {
     intake_set(user_intake_2_intake_fast_power);
   }
-  else if (ctlr_buttonR2) // slow intake
+  else if (ctlr_buttonL1) // slow intake
   {
     intake_set(user_intake_2_intake_slow_power);
   }
@@ -228,7 +228,7 @@ void user_tilter_2 ()
 // tilter control 3 - slows down near the top and resets in the beginning =========================
 bool user_tilter_3_setup_done = false;
 int user_tilter_3_setup_count = 0;
- 
+
 void user_tilter_3 ()
 {
   if (ctlr_buttonUP || ctlr_buttonDOWN) {
