@@ -87,4 +87,7 @@ extern int user_tilter_3_setup_count ;
  
 void user_tilter_3 () ;
 
+// arm control 1 - just a simplest code
+void user_arm_1    () ;
+
 #endif

@@ -87,6 +87,7 @@ void usercontrol( void )
     user_tank_2();
     user_tilter_1();
     user_intake_2();
+    user_arm_1();
     // button_Y_1();
 
     // slew rate & such
