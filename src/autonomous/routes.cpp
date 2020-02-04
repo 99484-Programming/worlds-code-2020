@@ -29,17 +29,7 @@ void auton_route_testing_2 () // 1 cube i think
 {
 }
 
-if (tilter is up)
-{
-  if (arm up is pressed)
-  {
-    arm go up
-  }
-  else
-  {
-    arm don't move (hold) arm.set_target(0);
-  }
-}
+
 
 void auton_route_testing_1 () // stacking testing
 {

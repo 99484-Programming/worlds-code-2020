@@ -305,32 +305,11 @@ void user_arm_josh()
 // arm control 1 - moves the tilter as well =======================================================
 void user_arm_1 ()
 {
-  if (ctlr_buttonX)
-  {
-    if (tilter.rotation_get() < 1200)
-    {
-    
-    }
-
-    while(tilter.rotation(rotationUnits::raw)>1000)
-    {
-      arm.spin(directionType::fwd, -40, velocityUnits::pct);
-    }
-  }
-
-  else if (ctlr_buttonB)
-  {
-    tilter.rotateFor(directionType::fwd, -1200, rotationUnits::raw, 100, velocityUnits::pct);
-
-    while(tilter.rotation(rotationUnits::raw)<200)
-    {
-      arm.spin(directionType::fwd, 100, velocityUnits::pct);
-    }
-  }
-
-  else
-  {
-    tilter.setBrake(brakeType::hold);
-    arm.setBrake(brakeType::hold);
-  }
+  
+ if (ctlr_buttonX)
+ {
+  
+ }
 }
+
+
