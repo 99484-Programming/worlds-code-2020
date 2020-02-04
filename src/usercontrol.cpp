@@ -285,12 +285,32 @@ void user_tilter_3 ()
   }
 }
 
+// arm control josh - kinda dumb ==================================================================
+void user_arm_josh()
+{
+  if (ctlr_buttonX)
+  {
+    arm.set_target(100);
+  }
+  else if (ctlr_buttonB)
+  {
+    arm.set_target(-75);
+  }
+  else
+  {
+    arm.set_target(0);
+  }
+}
+
+// arm control 1 - moves the tilter as well =======================================================
 void user_arm_1 ()
 {
   if (ctlr_buttonX)
   {
-    tilter.resetRotation();
-    tilter.rotateFor(directionType::fwd, 1200, rotationUnits::raw, 100, velocityUnits::pct);
+    if (tilter.rotation_get() < 1200)
+    {
+    
+    }
 
     while(tilter.rotation(rotationUnits::raw)>1000)
     {
@@ -300,7 +320,6 @@ void user_arm_1 ()
 
   else if (ctlr_buttonB)
   {
-    tilter.resetRotation();
     tilter.rotateFor(directionType::fwd, -1200, rotationUnits::raw, 100, velocityUnits::pct);
 
     while(tilter.rotation(rotationUnits::raw)<200)

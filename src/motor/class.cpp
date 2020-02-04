@@ -46,7 +46,25 @@ void Motor::update_vars ()
 
 void Motor::update_power_vel ()
 {
-  spin(vex::directionType::fwd, actual_power, vex::velocityUnits::pct);
+  if (actual_power != 0)
+  {
+    spin(vex::directionType::fwd, actual_power, vex::velocityUnits::pct);
+  }
+  else
+  {
+    switch (brake_type)
+    {
+      case 0 :
+        setBrake(vex::brakeType::brake);
+        break;
+      case 1 :
+        setBrake(vex::brakeType::coast);
+        break;
+      case 2 :
+        setBrake(vex::brakeType::hold);
+        break;
+    }
+  }
 }
 
 void Motor::update_power_vol ()
@@ -212,11 +230,13 @@ void Motor::update_power_mode_set (bool input_bool)
 }
 
 // contructor =================================================================================
-Motor::Motor (std::string name_input, int index, bool reverse, bool update_vars_mode_input, bool update_power_mode_input, bool print_actual_power_input, bool print_target_power_input, bool print_rotation_input, bool print_rotation_change_input) : vex::motor (index, reverse)
+Motor::Motor (std::string name_input, int index, bool reverse, int brake_type_input, bool update_vars_mode_input, bool update_power_mode_input, bool print_actual_power_input, bool print_target_power_input, bool print_rotation_input, bool print_rotation_change_input) : vex::motor (index, reverse)
 {
   motor (index, reverse);
 
   name = name_input;
+
+  brake_type = brake_type_input;
 
   update_vars_mode  = update_vars_mode_input ;
   update_power_mode = update_power_mode_input;

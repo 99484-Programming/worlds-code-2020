@@ -27,13 +27,18 @@ void auton_route_testing_3 ()
 
 void auton_route_testing_2 () // 1 cube i think
 {
-  a_drive(-50, 950);
+}
 
-  a_drive(100, 1250);
-
-  chassis_set(0);
-
-  a_wait(3000);
+if (tilter is up)
+{
+  if (arm up is pressed)
+  {
+    arm go up
+  }
+  else
+  {
+    arm don't move (hold) arm.set_target(0);
+  }
 }
 
 void auton_route_testing_1 () // stacking testing

@@ -21,6 +21,7 @@
 class Motor: public vex::motor {
   protected: // ===================================================================================
     std::string name;
+    int brake_type; // 0 is brake, 1 is coast, 2 is hold
     bool update_vars_mode; // 0 is direct, 1 is slew
     bool update_power_mode; // 0 is velocity, 1 is voltage
     bool print_actual_power_bool, print_target_power_bool, print_rotation_bool, print_rotation_change_bool;
@@ -69,7 +70,7 @@ class Motor: public vex::motor {
     void update_power_mode_set (bool input_bool) ;
 
     // contructor =================================================================================
-    Motor (std::string name_input, int index, bool reverse, bool update_vars_mode_input, bool update_power_mode_input, bool print_rotation_input, bool print_actual_power_input, bool print_target_power_input, bool print_rotation_change_input) ;
+    Motor (std::string name_input, int index, bool reverse, int brake_type_input, bool update_vars_mode_input, bool update_power_mode_input, bool print_rotation_input, bool print_actual_power_input, bool print_target_power_input, bool print_rotation_change_input) ;
 };
 
 #endif
