@@ -87,7 +87,7 @@ void usercontrol( void )
     user_tank_2();
     user_tilter_2();
     user_intake_2();
-    user_arm_1();
+    user_arm_josh();
 
     // slew rate & such
     motors_update_vars();
