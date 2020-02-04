@@ -284,3 +284,34 @@ void user_tilter_3 ()
     }
   }
 }
+
+void user_arm_1 ()
+{
+  if (ctlr_buttonX)
+  {
+    tilter.resetRotation();
+    tilter.rotateFor(directionType::fwd, 1200, rotationUnits::raw, 100, velocityUnits::pct);
+
+    while(tilter.rotation(rotationUnits::raw)>1000)
+    {
+      arm.spin(directionType::fwd, -40, velocityUnits::pct);
+    }
+  }
+
+  else if (ctlr_buttonB)
+  {
+    tilter.resetRotation();
+    tilter.rotateFor(directionType::fwd, -1200, rotationUnits::raw, 100, velocityUnits::pct);
+
+    while(tilter.rotation(rotationUnits::raw)<200)
+    {
+      arm.spin(directionType::fwd, 100, velocityUnits::pct);
+    }
+  }
+
+  else
+  {
+    tilter.setBrake(brakeType::hold);
+    arm.setBrake(brakeType::hold);
+  }
+}

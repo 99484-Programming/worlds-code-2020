@@ -20,6 +20,8 @@ void lstop(void);
 
 void istop(void);
 
+void tilter_r(int rotation, int power);
+
 void sleep(int time);
 
 void stop(void);
