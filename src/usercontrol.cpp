@@ -1,4 +1,5 @@
 #include "usercontrol.h"
+#include "sejun_code.h"
 
 // simple tank ctrl w/ threshold ==================================================================
 void user_tank_1 ()
@@ -114,11 +115,17 @@ void user_arcade_1 ()
 // intake control 1 ===============================================================================
 void user_intake_1 ()
 {
-  if (ctlr_buttonX && !ctlr_buttonA)
+  intake(-100);
+  tilt(-5);
+  sleep(2000);
+
+  stop();
+
+  if (ctlr_buttonR1 && !ctlr_buttonR2)
   {
     intake_set(-100);
   }
-  else if (ctlr_buttonA && !ctlr_buttonX)
+  else if (ctlr_buttonR2 && !ctlr_buttonR1)
   {
     intake_set(100);
   }
@@ -135,6 +142,12 @@ void user_intake_1 ()
 
 void user_intake_2 ()
 {
+  intake(-100);
+  tilt(-5);
+  sleep(2000);
+
+  stop();
+
   if (ctlr_buttonR1) // fast intaking
   {
     intake_set(user_intake_2_intake_fast_power);
@@ -296,20 +309,14 @@ void user_arm_josh()
   {
     arm.set_target(-75);
   }
-  else
-  {
-    arm.set_target(0);
-  }
-}
 
+ else
+ {
+
+ }
+}
 // arm control 1 - moves the tilter as well =======================================================
 void user_arm_1 ()
 {
-  
- if (ctlr_buttonX)
- {
-  
- }
+
 }
-
-
