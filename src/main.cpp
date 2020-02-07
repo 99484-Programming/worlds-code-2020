@@ -17,7 +17,6 @@
 void pre_auton( void )
 {
 }
- // hello
 // all code for the autonomous section goes in here ===============================================
 void autonomous( void )
 {

@@ -114,11 +114,17 @@ void user_arcade_1 ()
 // intake control 1 ===============================================================================
 void user_intake_1 ()
 {
-  if (ctlr_buttonX && !ctlr_buttonA)
+  intake(-100);
+  tilt(-5);
+  sleep(1800);
+
+  stop();
+
+  if (ctlr_buttonR1 && !ctlr_buttonR2)
   {
     intake_set(-100);
   }
-  else if (ctlr_buttonA && !ctlr_buttonX)
+  else if (ctlr_buttonR2 && !ctlr_buttonR1)
   {
     intake_set(100);
   }
