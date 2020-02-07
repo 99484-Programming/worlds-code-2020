@@ -319,6 +319,7 @@ void user_arm_josh()
 // arm control 1 - moves the tilter as well =======================================================
 void user_arm_1 ()
 {
+}
 
 // arm and tray control 1 - simple combined control ===============================================
 int user_arm_tray_1_tray_automatic = 0; // 0 when button input works, 1 when target is down, 2 when target is up
