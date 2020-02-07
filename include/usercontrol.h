@@ -7,6 +7,7 @@
 #include "motor/class.h"
 #include "motor/functions.h"
 #include "custom_math.h"
+#include "sejun_code.h"
 
 // constants
 #define TANK_DRIVE_JOYSTICK_THRESHOLD    5
