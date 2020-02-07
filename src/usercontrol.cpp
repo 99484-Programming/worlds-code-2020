@@ -118,6 +118,7 @@ void user_intake_1 ()
   intake(-100);
   tilt(-5);
   sleep(2000);
+  sleep(1800);
 
   stop();
 
@@ -319,4 +320,85 @@ void user_arm_josh()
 void user_arm_1 ()
 {
 
+// arm and tray control 1 - simple combined control ===============================================
+int user_arm_tray_1_tray_automatic = 0; // 0 when button input works, 1 when target is down, 2 when target is up
+int user_arm_tray_1_arm_down_button_duration = 0; // how long the arm down button has been pressed for
+
+void user_arm_tray_1 ()
+{
+  if (user_arm_tray_1_arm_down) // update arm_down_button_duration variable
+  {
+    user_arm_tray_1_arm_down_button_duration += 20;
+  }
+  else
+  {
+    user_arm_tray_1_arm_down_button_duration = 0;
+  }
+
+  if (user_arm_tray_1_arm_up) // button input for automatic tray control
+  {
+    user_arm_tray_1_tray_automatic = 2;
+  }
+  else if (user_arm_tray_1_arm_down_button_duration >= 750)
+  {
+    user_arm_tray_1_tray_automatic = 1;
+  }
+
+  // automatic tray control
+  if (user_arm_tray_1_tray_automatic == 2) // if the tray target is up
+  {
+    if (tilter.rotation_get() < user_arm_tray_1_tray_3) // if the tray is too low
+    {
+      tilter.set_target(user_arm_tray_1_tray_auto_up_pwr);
+    }
+    else if (tilter.rotation_get() > user_arm_tray_1_tray_3)  // if the tray is above the target
+    {
+      if (tilter.rotation_get() > user_arm_tray_1_tray_3 + user_arm_tray_1_tray_moe) // if the tray is in the margin of error
+      {
+        tilter.set_target(0);
+      }
+      else // if the tray is too high
+      {
+        tilter.set_target(user_arm_tray_1_tray_auto_down_pwr);
+      }
+    }
+  }
+  else if (user_arm_tray_1_tray_automatic == 1) // if the tray target is down
+  {
+    if (tilter.rotation_get() > user_arm_tray_1_tray_1) // if the tray is too high
+    {
+      tilter.set_target(user_arm_tray_1_tray_auto_down_pwr);
+    }
+    else // if the tray is down - DONE
+    {
+      tilter.set_target(0);
+      user_arm_tray_1_tray_automatic = 0; // engage usercontrol for the tray
+    }
+  }
+  else // usercontrol for the tray
+  {
+    if (user_arm_tray_1_tray_up) // if the up button is pressed
+    {
+      if (tilter.rotation_get() < user_tilter_2_up_pos_1) // if we are not close to verticle
+      {
+        tilter.set_target(user_tilter_2_up_power_super_fast);
+      }
+      else if (tilter.rotation_get() < user_tilter_2_up_pos_2) // if we are close to verticle
+      {
+        tilter.set_target(user_tilter_2_up_power_fast);
+      }
+      else if (tilter.rotation_get() < user_tilter_2_up_pos_3) // if we are closer to verticle
+      {
+        tilter.set_target(user_tilter_2_up_power_slow);
+      }
+      else // if we are past the limit
+      {
+        tilter.set_target(-20);
+      }
+    }
+    else if (ctlr_buttonDOWN) // if down button is pressed
+    {
+      tilter.set_target(user_tilter_2_down_power_fast);
+    }
+  }
 }

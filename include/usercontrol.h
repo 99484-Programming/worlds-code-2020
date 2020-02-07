@@ -7,6 +7,7 @@
 #include "motor/class.h"
 #include "motor/functions.h"
 #include "custom_math.h"
+#include "sejun_code.h"
 
 // constants
 #define TANK_DRIVE_JOYSTICK_THRESHOLD    5
@@ -92,5 +93,38 @@ void user_arm_josh ();
 
 // arm control 1 =================================================================================
 void user_arm_1 () ;
+
+// arm and tray control 1 - simple combined control ===============================================
+#define user_arm_tray_1_tray_moe 50 // 
+#define user_arm_tray_1_arm_moe  25 // 
+
+#define user_arm_tray_1_tray_1    100 // slow down tray
+#define user_arm_tray_1_tray_2    300 // tray is down
+#define user_arm_tray_1_tray_3   1300 // automatic movement position
+#define user_arm_tray_1_tray_4   1500 // start slowing down position
+#define user_arm_tray_1_tray_5   2250 // even slower
+#define user_arm_tray_1_tray_6   2850 // very top position
+
+#define user_arm_tray_1_arm_1    0 // position for intaking
+// #define user_arm_tray_1_arm_2  700 // low towers
+// #define user_arm_tray_1_arm_3 1400 // high towers
+#define user_arm_tray_1_arm_4 2100 // upper limit for the arm
+
+#define user_arm_tray_1_tray_up   ctlr_buttonRIGHT
+#define user_arm_tray_1_tray_down ctlr_buttonDOWN
+#define user_arm_tray_1_arm_up    ctlr_buttonY
+#define user_arm_tray_1_arm_down  ctlr_buttonB
+
+#define user_arm_tray_1_tray_up_pwr_1      100 // default power
+#define user_arm_tray_1_tray_up_pwr_2       30 // slow power 1
+#define user_arm_tray_1_tray_up_pwr_3       20 // slowest power
+#define user_arm_tray_1_tray_auto_up_pwr    70 // for automatically raising the tray
+#define user_arm_tray_1_tray_auto_down_pwr -50 // for automatically lowering the tray
+#define user_arm_tray_1_tray_down_pwr_1    -90 // default power
+#define user_arm_tray_1_tray_down_pwr_2    -20 // slow power
+#define user_arm_tray_1_arm_up_pwr         100 // default power
+#define user_arm_tray_1_arm_down_pwr       -90 // default power
+
+void user_arm_tray_1 ();
 
 #endif
