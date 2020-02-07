@@ -17,10 +17,7 @@
 void pre_auton( void )
 {
 }
-<<<<<<< HEAD
-=======
-//hallo Sejun
->>>>>>> c842437ea889920d57f957606f74f87ca9e6adcb
+
 // all code for the autonomous section goes in here ===============================================
 void autonomous( void )
 {
@@ -88,8 +85,8 @@ void usercontrol( void )
 
     // usercontrol
     user_tank_2();
-    user_tilter_2();
     user_intake_2();
+    user_tilter_2();
     user_arm_josh();
 
     // slew rate & such
