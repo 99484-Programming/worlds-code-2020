@@ -298,7 +298,7 @@ void auton_route_5 ()
   a_wait(500);
 
   a_drive(-20, 750);
-  a_tilter_down();
+  a_tray_down();
 
   a_wait(250);
 }
@@ -329,7 +329,7 @@ void auton_route_6 ()
   a_wait(500);
 
   a_drive(-100, 500);
-  a_tilter_down();
+  a_tray_down();
 
   a_wait(500);
 }

@@ -47,46 +47,46 @@ void user_intake_1 () ;
 
 void user_intake_2 () ;
 
-// tilter control 1 ===============================================================================
-#define user_tilter_1_up_power   100
-#define user_tilter_1_down_power -80
+// tray control 1 ===============================================================================
+#define user_tray_1_up_power   100
+#define user_tray_1_down_power -80
 
-void user_tilter_1 () ;
+void user_tray_1 () ;
 
-// tilter control 2 - slows down near the top =====================================================
-#define user_tilter_2_up_power_super_fast   100
-#define user_tilter_2_up_power_fast          30
-#define user_tilter_2_up_power_slow          20
-#define user_tilter_2_down_power_fast       -90
-#define user_tilter_2_down_power_slow       -60
-#define user_tilter_2_down_power_super_slow -20
+// tray control 2 - slows down near the top =====================================================
+#define user_tray_2_up_power_super_fast   100
+#define user_tray_2_up_power_fast          30
+#define user_tray_2_up_power_slow          20
+#define user_tray_2_down_power_fast       -90
+#define user_tray_2_down_power_slow       -60
+#define user_tray_2_down_power_super_slow -20
 
-#define user_tilter_2_up_pos_1   1500
-#define user_tilter_2_up_pos_2   2250
-#define user_tilter_2_up_pos_3   2850
-#define user_tilter_2_down_pos_1  300
-#define user_tilter_2_down_pos_2  100
+#define user_tray_2_up_pos_1   1500
+#define user_tray_2_up_pos_2   2250
+#define user_tray_2_up_pos_3   2850
+#define user_tray_2_down_pos_1  300
+#define user_tray_2_down_pos_2  100
 
-void user_tilter_2 () ;
+void user_tray_2 () ;
 
-// tilter control 3 - slows down near the top =====================================================
-#define user_tilter_3_up_power_super_fast   100
-#define user_tilter_3_up_power_fast          50
-#define user_tilter_3_up_power_slow          30
-#define user_tilter_3_down_power_fast       -90
-#define user_tilter_3_down_power_slow       -60
-#define user_tilter_3_down_power_super_slow -20
+// tray control 3 - slows down near the top =====================================================
+#define user_tray_3_up_power_super_fast   100
+#define user_tray_3_up_power_fast          50
+#define user_tray_3_up_power_slow          30
+#define user_tray_3_down_power_fast       -90
+#define user_tray_3_down_power_slow       -60
+#define user_tray_3_down_power_super_slow -20
  
-#define user_tilter_3_up_pos_1   1300+200
-#define user_tilter_3_up_pos_2   1600+200
-#define user_tilter_3_up_pos_3   2550+200
-#define user_tilter_3_down_pos_1  300
-#define user_tilter_3_down_pos_2  100
+#define user_tray_3_up_pos_1   1500
+#define user_tray_3_up_pos_2   1800
+#define user_tray_3_up_pos_3   2750
+#define user_tray_3_down_pos_1  300
+#define user_tray_3_down_pos_2  100
  
-extern bool user_tilter_3_setup_done ;
-extern int user_tilter_3_setup_count ;
+extern bool user_tray_3_setup_done ;
+extern int user_tray_3_setup_count ;
  
-void user_tilter_3 () ;
+void user_tray_3 () ;
 
 // arm control josh - kinda dumb
 void user_arm_josh ();
@@ -104,11 +104,12 @@ void user_arm_1 () ;
 #define user_arm_tray_1_tray_4   1500 // start slowing down position
 #define user_arm_tray_1_tray_5   2250 // even slower
 #define user_arm_tray_1_tray_6   2850 // very top position
+#define user_arm_tray_1_tray_7   2900 // physical limit
 
 #define user_arm_tray_1_arm_1    0 // position for intaking
-// #define user_arm_tray_1_arm_2  700 // low towers
-// #define user_arm_tray_1_arm_3 1400 // high towers
-#define user_arm_tray_1_arm_4 2100 // upper limit for the arm
+// #define user_arm_tray_1_arm_3  700 // low towers
+// #define user_arm_tray_1_arm_4 1400 // high towers
+#define user_arm_tray_1_arm_5 2100 // upper limit for the arm
 
 #define user_arm_tray_1_tray_up   ctlr_buttonRIGHT
 #define user_arm_tray_1_tray_down ctlr_buttonDOWN
