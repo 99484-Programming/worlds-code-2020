@@ -29,7 +29,7 @@ void Chassis_left(int power)
 
 void tilt(int power)
 {
-  tilter.spin(directionType::fwd, power, velocityUnits::pct);
+  tray.spin(directionType::fwd, power, velocityUnits::pct);
 }
 
 
@@ -65,7 +65,7 @@ void stop(void)
   left_front.stop();
   right_front.stop();
   left_back.stop();
-  tilter.stop();
+  tray.stop();
 }
 
 void auton_forward(int rotation)

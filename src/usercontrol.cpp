@@ -164,137 +164,137 @@ void user_intake_2 ()
   else
   {
     intake_set(0);
-    // if (tilter.rotation_get() < user_tilter_2_down_pos_2 + 300 && ctlr_buttonUP)
+    // if (tray.rotation_get() < user_tray_2_down_pos_2 + 300 && ctlr_buttonUP)
     // {
     //   intake_set(-90);
     // }
   }
 }
 
-// tilter control 1 ===============================================================================
+// tray control 1 =================================================================================
 // press R1 to go up
 // press R2 to go down
 
-void user_tilter_1 ()
+void user_tray_1 ()
 {
   if (ctlr_buttonUP)
   {
-    tilter.set_target(100);
+    tray.set_target(100);
   }
   else if (ctlr_buttonDOWN)
   {
-    tilter.set_target(-100);
+    tray.set_target(-100);
   }
   else
   {
-    tilter.set_target(0);
+    tray.set_target(0);
   }
 }
 
-// tilter control 2 - slows down near the top =====================================================
-void user_tilter_2 ()
+// tray control 2 - slows down near the top =======================================================
+void user_tray_2 ()
 {
   if (ctlr_buttonUP) // if the up button is pressed
   {
-    tilter.update_power_mode_set(0);
-    if (tilter.rotation_get() < user_tilter_2_up_pos_1) // if we are not close to verticle
+    tray.update_power_mode_set(0);
+    if (tray.rotation_get() < user_tray_2_up_pos_1) // if we are not close to verticle
     {
-      tilter.set_target(user_tilter_2_up_power_super_fast);
+      tray.set_target(user_tray_2_up_power_super_fast);
     }
-    else if (tilter.rotation_get() < user_tilter_2_up_pos_2) // if we are close to verticle
+    else if (tray.rotation_get() < user_tray_2_up_pos_2) // if we are close to verticle
     {
-      tilter.set_target(user_tilter_2_up_power_fast);
+      tray.set_target(user_tray_2_up_power_fast);
     }
-    else if (tilter.rotation_get() < user_tilter_2_up_pos_3) // if we are closer to verticle
+    else if (tray.rotation_get() < user_tray_2_up_pos_3) // if we are closer to verticle
     {
-      tilter.set_target(user_tilter_2_up_power_slow);
+      tray.set_target(user_tray_2_up_power_slow);
     }
     else // if we are past the limit
     {
-      tilter.set_target(-20);
+      tray.set_target(-20);
     }
   }
   else if (ctlr_buttonDOWN) // if down button is pressed
   {
-    tilter.update_power_mode_set(0);
-    tilter.set_target(user_tilter_2_down_power_fast);
+    tray.update_power_mode_set(0);
+    tray.set_target(user_tray_2_down_power_fast);
   }
   else
   {
-    if (tilter.rotation_get() > user_tilter_2_up_pos_1 && tilter.rotation_get() < user_tilter_2_up_pos_3)
+    if (tray.rotation_get() > user_tray_2_up_pos_1 && tray.rotation_get() < user_tray_2_up_pos_3)
     {
-      tilter.update_power_mode_set(1);
-      tilter.set_target(15);
+      tray.update_power_mode_set(1);
+      tray.set_target(15);
     }
-    else if (tilter.rotation_get() > user_tilter_2_up_pos_3)
+    else if (tray.rotation_get() > user_tray_2_up_pos_3)
     {
-      tilter.update_power_mode_set(1);
-      tilter.set_target(-20);
+      tray.update_power_mode_set(1);
+      tray.set_target(-20);
     }
     else
     {
-      tilter.update_power_mode_set(0);
-      tilter.set_target(0);
+      tray.update_power_mode_set(0);
+      tray.set_target(0);
     }
   }
 }
 
-// tilter control 3 - slows down near the top and resets in the beginning =========================
-bool user_tilter_3_setup_done = false;
-int user_tilter_3_setup_count = 0;
+// tray control 3 - slows down near the top and resets in the beginning ===========================
+bool user_tray_3_setup_done = false;
+int user_tray_3_setup_count = 0;
 
-void user_tilter_3 ()
+void user_tray_3 ()
 {
   if (ctlr_buttonUP || ctlr_buttonDOWN) {
-    user_tilter_3_setup_done = true;
+    user_tray_3_setup_done = true;
   }
-  if (!user_tilter_3_setup_done) {
-    user_tilter_3_setup_count += 1;
-    tilter.update_power_mode_set(true);
-    tilter.set_target(-30);
-    if (fabs(tilter.rotation_change_get()) == 0.0 &&
-        user_tilter_3_setup_count > 20) {
-      tilter.rotation_reset();
-      user_tilter_3_setup_done = true;
+  if (!user_tray_3_setup_done) {
+    user_tray_3_setup_count += 1;
+    tray.update_power_mode_set(true);
+    tray.set_target(-30);
+    if (fabs(tray.rotation_change_get()) == 0.0 &&
+        user_tray_3_setup_count > 20) {
+      tray.rotation_reset();
+      user_tray_3_setup_done = true;
     }
   } else {
-    tilter.update_power_mode_set(false);
+    tray.update_power_mode_set(false);
   }
 
   if (ctlr_buttonUP) // if the up button is pressed
   {
-    tilter.update_power_mode_set(0);
-    if (tilter.rotation_get() <
-        user_tilter_3_up_pos_1) // if we are not close to verticle
+    tray.update_power_mode_set(0);
+    if (tray.rotation_get() <
+        user_tray_3_up_pos_1) // if we are not close to verticle
     {
-      tilter.set_target(user_tilter_3_up_power_super_fast);
-    } else if (tilter.rotation_get() <
-               user_tilter_3_up_pos_2) // if we are close to verticle
+      tray.set_target(user_tray_3_up_power_super_fast);
+    } else if (tray.rotation_get() <
+               user_tray_3_up_pos_2) // if we are close to verticle
     {
-      tilter.set_target(user_tilter_3_up_power_fast);
-    } else if (tilter.rotation_get() <
-               user_tilter_3_up_pos_3) // if we are closer to verticle
+      tray.set_target(user_tray_3_up_power_fast);
+    } else if (tray.rotation_get() <
+               user_tray_3_up_pos_3) // if we are closer to verticle
     {
-      tilter.set_target(user_tilter_3_up_power_slow);
+      tray.set_target(user_tray_3_up_power_slow);
     } else // if we are past the limit
     {
-      tilter.set_target(-20);
+      tray.set_target(-20);
     }
   } else if (ctlr_buttonDOWN) // if down button is pressed
   {
-    tilter.update_power_mode_set(0);
-    tilter.set_target(user_tilter_3_down_power_fast);
+    tray.update_power_mode_set(0);
+    tray.set_target(user_tray_3_down_power_fast);
   } else {
-    if (tilter.rotation_get() > user_tilter_3_up_pos_1 &&
-        tilter.rotation_get() < user_tilter_3_up_pos_3) {
-      tilter.update_power_mode_set(1);
-      tilter.set_target(15);
-    } else if (tilter.rotation_get() > user_tilter_3_up_pos_3) {
-      tilter.update_power_mode_set(1);
-      tilter.set_target(-20);
-    } else if (user_tilter_3_setup_done) {
-      tilter.update_power_mode_set(0);
-      tilter.set_target(0);
+    if (tray.rotation_get() > user_tray_3_up_pos_1 &&
+        tray.rotation_get() < user_tray_3_up_pos_3) {
+      tray.update_power_mode_set(1);
+      tray.set_target(15);
+    } else if (tray.rotation_get() > user_tray_3_up_pos_3) {
+      tray.update_power_mode_set(1);
+      tray.set_target(-20);
+    } else if (user_tray_3_setup_done) {
+      tray.update_power_mode_set(0);
+      tray.set_target(0);
     }
   }
 }
@@ -316,13 +316,14 @@ void user_arm_josh()
 
  }
 }
-// arm control 1 - moves the tilter as well =======================================================
+// arm control 1 - moves the tray as well =========================================================
 void user_arm_1 ()
 {
 }
 
 // arm and tray control 1 - simple combined control ===============================================
 int user_arm_tray_1_tray_automatic = 0; // 0 when button input works, 1 when target is down, 2 when target is up
+int user_arm_tray_1_arm_automatic = 0; // 0 when button input works, 1 when target is down
 int user_arm_tray_1_arm_down_button_duration = 0; // how long the arm down button has been pressed for
 
 void user_arm_tray_1 ()
@@ -336,70 +337,101 @@ void user_arm_tray_1 ()
     user_arm_tray_1_arm_down_button_duration = 0;
   }
 
-  if (user_arm_tray_1_arm_up) // button input for automatic tray control
+  if (user_arm_tray_1_arm_up) // button input for automatic tray and arm control
   {
     user_arm_tray_1_tray_automatic = 2;
+    user_arm_tray_1_arm_automatic = 0;
   }
   else if (user_arm_tray_1_arm_down_button_duration >= 750)
   {
-    user_arm_tray_1_tray_automatic = 1;
+    user_arm_tray_1_tray_automatic = 0;
+    user_arm_tray_1_arm_automatic = 1;
   }
 
-  // automatic tray control
+  // automatic tray control (usercontrol at the very end)
   if (user_arm_tray_1_tray_automatic == 2) // if the tray target is up
   {
-    if (tilter.rotation_get() < user_arm_tray_1_tray_3) // if the tray is too low
+    if (tray.rotation_get() < user_arm_tray_1_tray_3) // if the tray is too low
     {
-      tilter.set_target(user_arm_tray_1_tray_auto_up_pwr);
+      tray.set_target(user_arm_tray_1_tray_auto_up_pwr);
     }
-    else if (tilter.rotation_get() > user_arm_tray_1_tray_3)  // if the tray is above the target
+    else if (tray.rotation_get() > user_arm_tray_1_tray_3)  // if the tray is above the target
     {
-      if (tilter.rotation_get() > user_arm_tray_1_tray_3 + user_arm_tray_1_tray_moe) // if the tray is in the margin of error
+      if (tray.rotation_get() > user_arm_tray_1_tray_3 + user_arm_tray_1_tray_moe) // if the tray is in the margin of error
       {
-        tilter.set_target(0);
+        tray.set_target(0);
       }
       else // if the tray is too high
       {
-        tilter.set_target(user_arm_tray_1_tray_auto_down_pwr);
+        tray.set_target(user_arm_tray_1_tray_auto_down_pwr);
       }
     }
   }
   else if (user_arm_tray_1_tray_automatic == 1) // if the tray target is down
   {
-    if (tilter.rotation_get() > user_arm_tray_1_tray_1) // if the tray is too high
+    if (tray.rotation_get() > user_arm_tray_1_tray_1) // if the tray is too high
     {
-      tilter.set_target(user_arm_tray_1_tray_auto_down_pwr);
+      tray.set_target(user_arm_tray_1_tray_auto_down_pwr);
     }
     else // if the tray is down - DONE
     {
-      tilter.set_target(0);
+      tray.set_target(0);
       user_arm_tray_1_tray_automatic = 0; // engage usercontrol for the tray
     }
   }
   else // usercontrol for the tray
   {
-    if (user_arm_tray_1_tray_up) // if the up button is pressed
+    if (user_arm_tray_1_tray_up) // if tray up button is pressed
     {
-      if (tilter.rotation_get() < user_tilter_2_up_pos_1) // if we are not close to verticle
+      if (tray.rotation_get() < user_arm_tray_1_tray_4) // stage 1
       {
-        tilter.set_target(user_tilter_2_up_power_super_fast);
+        tray.set_target(user_arm_tray_1_tray_up_pwr_1); // fastest usercontrol power
       }
-      else if (tilter.rotation_get() < user_tilter_2_up_pos_2) // if we are close to verticle
+      else if (tray.rotation_get() < user_arm_tray_1_tray_5) // stage 2
       {
-        tilter.set_target(user_tilter_2_up_power_fast);
+        tray.set_target(user_arm_tray_1_tray_up_pwr_2);
       }
-      else if (tilter.rotation_get() < user_tilter_2_up_pos_3) // if we are closer to verticle
+      else if (tray.rotation_get() < user_arm_tray_1_tray_6) // stage 3
       {
-        tilter.set_target(user_tilter_2_up_power_slow);
+        tray.set_target(user_arm_tray_1_tray_up_pwr_3);
       }
-      else // if we are past the limit
+      else if (tray.rotation_get() < user_arm_tray_1_tray_7) // limit
       {
-        tilter.set_target(-20);
+        tray.set_target(0);
+      }
+      else
+      {
+        tray.set_target(user_arm_tray_1_tray_down_pwr_2);
       }
     }
-    else if (ctlr_buttonDOWN) // if down button is pressed
+    else if (user_arm_tray_1_tray_down) // if tray down button is pressed
     {
-      tilter.set_target(user_tilter_2_down_power_fast);
+      tray.set_target(user_tray_2_down_power_fast);
+    }
+  }
+
+  // arm usercontrol
+  if (user_arm_tray_1_arm_automatic) // if automatic control down
+  {
+    if (arm.rotation_get() > user_arm_tray_1_arm_1) // if the tray is too high
+    {
+      arm.set_target(user_arm_tray_1_arm_down_pwr);
+    }
+    else // if the arm is down - DONE
+    {
+      tray.set_target(0);
+      user_arm_tray_1_tray_automatic = 0; // engage usercontrol for the tray
+    }
+  }
+  else // usercontrol
+  {
+    if (user_arm_tray_1_arm_up)
+    {
+      arm.set_target(user_arm_tray_1_arm_up_pwr);
+    }
+    else if (user_arm_tray_1_arm_down)
+    {
+      arm.set_target(user_arm_tray_1_arm_down_pwr);
     }
   }
 }

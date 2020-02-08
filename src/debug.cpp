@@ -90,10 +90,6 @@ void debug_print ()
       i->print_rotation_change();
     }
 
-    Brain.Screen.print("done var : %d", user_tilter_3_setup_done); Brain.Screen.newLine();
-    // Brain.Screen.print("error : %f", auton_turn_1_error);    Brain.Screen.newLine();
-    // Brain.Screen.print("pos : %f", auton_turn_1_pos);
-
     std::cout << "0" << std::endl;
   }
 }
