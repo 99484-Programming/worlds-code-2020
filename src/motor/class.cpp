@@ -54,6 +54,8 @@ void Motor::update_power_vel ()
   {
     switch (brake_type)
     {
+      case -1 :
+        spin(vex::directionType::fwd, 0, vex::velocityUnits::pct);
       case 0 :
         setBrake(vex::brakeType::brake);
         break;

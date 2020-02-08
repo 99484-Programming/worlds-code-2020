@@ -21,7 +21,7 @@
 class Motor: public vex::motor {
   protected: // ===================================================================================
     std::string name;
-    int brake_type; // 0 is brake, 1 is coast, 2 is hold
+    int brake_type; // -1 is vel ctrl, 0 is brake, 1 is coast, 2 is hold
     bool update_vars_mode; // 0 is direct, 1 is slew
     bool update_power_mode; // 0 is velocity, 1 is voltage
     bool print_actual_power_bool, print_target_power_bool, print_rotation_bool, print_rotation_change_bool;
