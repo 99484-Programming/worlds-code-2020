@@ -25,7 +25,7 @@ double user_tank_2_speed_multiplier; // used to keep track of how fast it should
 
 void user_tank_2 ()
 {
-  // change drive most based on button input
+  // change drive mode based on button input
   if (ctlr_buttonL2)
   {
     user_tank_2_mode = 0;
@@ -299,8 +299,8 @@ void user_tray_3 ()
   }
 }
 
-// arm control josh - kinda dumb ==================================================================
-void user_arm_josh()
+// arm control 1 - kinda dumb =====================================================================
+void user_arm_1()
 {
   if (ctlr_buttonX)
   {
@@ -310,15 +310,10 @@ void user_arm_josh()
   {
     arm.set_target(-75);
   }
-
- else
- {
-
- }
-}
-// arm control 1 - moves the tray as well =========================================================
-void user_arm_1 ()
-{
+  else
+  {
+    arm.set_target(0);
+  }
 }
 
 // arm and tray control 1 - simple combined control ===============================================

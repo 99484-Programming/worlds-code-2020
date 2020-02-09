@@ -88,9 +88,6 @@ extern int user_tray_3_setup_count ;
  
 void user_tray_3 () ;
 
-// arm control josh - kinda dumb
-void user_arm_josh ();
-
 // arm control 1 =================================================================================
 void user_arm_1 () ;
 
@@ -125,6 +122,10 @@ void user_arm_1 () ;
 #define user_arm_tray_1_tray_down_pwr_2    -20 // slow power
 #define user_arm_tray_1_arm_up_pwr         100 // default power
 #define user_arm_tray_1_arm_down_pwr       -90 // default power
+
+extern int user_arm_tray_1_tray_automatic           ; // 0 when button input works, 1 when target is down, 2 when target is up
+extern int user_arm_tray_1_arm_automatic            ; // 0 when button input works, 1 when target is down
+extern int user_arm_tray_1_arm_down_button_duration ; // how long the arm down button has been pressed for
 
 void user_arm_tray_1 ();
 
