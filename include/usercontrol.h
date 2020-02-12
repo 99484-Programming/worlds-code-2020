@@ -61,7 +61,7 @@ void user_tray_1 () ;
 #define user_tray_2_down_power_slow       -60
 #define user_tray_2_down_power_super_slow -20
 
-#define user_tray_2_up_pos_1   1500
+#define user_tray_2_up_pos_1   1300
 #define user_tray_2_up_pos_2   2250
 #define user_tray_2_up_pos_3   2850
 #define user_tray_2_down_pos_1  300
@@ -98,7 +98,7 @@ void user_arm_1 () ;
 #define user_arm_tray_1_tray_1    100 // slow down tray
 #define user_arm_tray_1_tray_2    300 // tray is down
 #define user_arm_tray_1_tray_3   1300 // automatic movement position
-#define user_arm_tray_1_tray_4   1500 // start slowing down position
+#define user_arm_tray_1_tray_4   1300 // start slowing down position
 #define user_arm_tray_1_tray_5   2250 // even slower
 #define user_arm_tray_1_tray_6   2850 // very top position
 #define user_arm_tray_1_tray_7   2900 // physical limit

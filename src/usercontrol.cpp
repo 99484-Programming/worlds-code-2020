@@ -115,13 +115,6 @@ void user_arcade_1 ()
 // intake control 1 ===============================================================================
 void user_intake_1 ()
 {
-  intake(-100);
-  tilt(-5);
-  sleep(2000);
-  sleep(1800);
-
-  stop();
-
   if (ctlr_buttonR1 && !ctlr_buttonR2)
   {
     intake_set(-100);
@@ -143,12 +136,6 @@ void user_intake_1 ()
 
 void user_intake_2 ()
 {
-  intake(-100);
-  tilt(-5);
-  sleep(2000);
-
-  stop();
-
   if (ctlr_buttonR1) // fast intaking
   {
     intake_set(user_intake_2_intake_fast_power);
@@ -194,7 +181,7 @@ void user_tray_1 ()
 // tray control 2 - slows down near the top =======================================================
 void user_tray_2 ()
 {
-  if (ctlr_buttonUP) // if the up button is pressed
+  if (ctlr_buttonRIGHT) // if the up button is pressed
   {
     tray.update_power_mode_set(0);
     if (tray.rotation_get() < user_tray_2_up_pos_1) // if we are not close to verticle
@@ -302,7 +289,7 @@ void user_tray_3 ()
 // arm control 1 - kinda dumb =====================================================================
 void user_arm_1()
 {
-  if (ctlr_buttonX)
+  if (ctlr_buttonY)
   {
     arm.set_target(100);
   }
@@ -337,7 +324,7 @@ void user_arm_tray_1 ()
     user_arm_tray_1_tray_automatic = 2;
     user_arm_tray_1_arm_automatic = 0;
   }
-  else if (user_arm_tray_1_arm_down_button_duration >= 750)
+  else if (user_arm_tray_1_arm_down_button_duration >= 500)
   {
     user_arm_tray_1_tray_automatic = 0;
     user_arm_tray_1_arm_automatic = 1;
@@ -403,6 +390,10 @@ void user_arm_tray_1 ()
     {
       tray.set_target(user_tray_2_down_power_fast);
     }
+    else
+    {
+      tray.set_target(0);
+    }
   }
 
   // arm usercontrol
@@ -427,6 +418,10 @@ void user_arm_tray_1 ()
     else if (user_arm_tray_1_arm_down)
     {
       arm.set_target(user_arm_tray_1_arm_down_pwr);
+    }
+    else
+    {
+      arm.set_target(0);
     }
   }
 }

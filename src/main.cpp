@@ -86,6 +86,8 @@ void usercontrol( void )
     // usercontrol
     user_tank_2();
     user_intake_2();
+    // user_tray_2();
+    // user_arm_1();
     user_arm_tray_1();
 
     // slew rate & such
