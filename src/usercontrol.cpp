@@ -326,9 +326,9 @@ void user_arm_tray_1 ()
     user_arm_tray_1_tray_automatic = 2;
     user_arm_tray_1_arm_automatic = 0;
   }
-  else if (user_arm_tray_1_arm_down_button_duration >= 750)
+  else if (user_arm_tray_1_arm_down_button_duration >= 250)
   {
-    user_arm_tray_1_tray_automatic = 0;
+    user_arm_tray_1_tray_automatic = 1;
     user_arm_tray_1_arm_automatic = 1;
   }
 
@@ -343,7 +343,7 @@ void user_arm_tray_1 ()
     {
       if (tray.rotation_get() > user_arm_tray_1_tray_3 + user_arm_tray_1_tray_moe) // if the tray is in the margin of error
       {
-        tray.set_target(0);
+        tray.set_target(10);
       }
       else // if the tray is too high
       {
@@ -392,6 +392,10 @@ void user_arm_tray_1 ()
     {
       tray.set_target(user_tray_2_down_power_fast);
     }
+    else
+    {
+      tray.set_target(0);
+    }
   }
 
   // arm usercontrol
@@ -416,6 +420,10 @@ void user_arm_tray_1 ()
     else if (user_arm_tray_1_arm_down)
     {
       arm.set_target(user_arm_tray_1_arm_down_pwr);
+    }
+    else
+    {
+      arm.set_target(0);
     }
   }
 }
