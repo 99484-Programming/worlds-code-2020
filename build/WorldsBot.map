@@ -2595,8 +2595,8 @@ Linker script and memory map
                 0x0000000000000400                _IRQ_STACK_SIZE = DEFINED (_IRQ_STACK_SIZE)?_IRQ_STACK_SIZE:0x400
                 0x0000000000000400                _FIQ_STACK_SIZE = DEFINED (_FIQ_STACK_SIZE)?_FIQ_STACK_SIZE:0x400
                 0x0000000000000400                _UNDEF_STACK_SIZE = DEFINED (_UNDEF_STACK_SIZE)?_UNDEF_STACK_SIZE:0x400
-
 .text           0x0000000003800000     0x48e0
+
  *(.vectors)
  *(.boot_data)
  .boot_data     0x0000000003800000       0x20 /Applications/VEXcode V5 Text.app/Contents/Resources/sdk/vexv5/libv5rt.a(v5_startup.c.obj)
@@ -3232,11 +3232,13 @@ Linker script and memory map
                 0x0000000003804860                __libc_init_array
  .text.__libc_init_array.__stub
                 0x00000000038048b8       0x28 linker stubs
+
  *(.gnu.linkonce.t.*)
  *(.plt)
  *(.gnu_warning)
  *(.gcc_except_table)
  *(.glue_7)
+
  .glue_7        0x00000000038048e0        0x0 linker stubs
  *(.glue_7t)
  .glue_7t       0x00000000038048e0        0x0 linker stubs
@@ -3251,11 +3253,13 @@ Linker script and memory map
 .iplt           0x00000000038048e0        0x0
  .iplt          0x00000000038048e0        0x0 build/src/controller.o
 
+
 .init
  *(.init)
 
 .fini
  *(.fini)
+
 
 .rodata         0x00000000038048e0      0x21c
                 0x00000000038048e0                __rodata_start = .
@@ -3370,6 +3374,7 @@ Linker script and memory map
  .data._impure_ptr
                 0x0000000003804f38        0x4 /Applications/VEXcode V5 Text.app/Contents/Resources/sdk/vexv5/gcc/libs/libc.a(lib_a-impure.o)
                 0x0000000003804f38                _impure_ptr
+
  *(.gnu.linkonce.d.*)
  *(.jcr)
  *(.got)
@@ -3384,6 +3389,7 @@ Linker script and memory map
  *(.data1)
  *(.data1.*)
                 0x0000000003804f3c                __data1_end = .
+
 
 .got
  *(.got)

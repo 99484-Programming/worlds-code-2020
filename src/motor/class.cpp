@@ -235,7 +235,20 @@ Motor::Motor (std::string name_input, int index, bool reverse, int brake_type_in
 
   name = name_input;
 
-  brake_type = brake_type_input;
+  switch (brake_type_input)
+  {
+    case -1 :
+      break;
+    case 0 :
+      setBrake(vex::brakeType::brake);
+      break;
+    case 1 :
+      setBrake(vex::brakeType::coast);
+      break;
+    case 2 :
+      setBrake(vex::brakeType::hold);
+      break;
+  }
 
   update_vars_mode  = update_vars_mode_input ;
   update_power_mode = update_power_mode_input;

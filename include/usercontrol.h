@@ -61,7 +61,7 @@ void user_tray_1 () ;
 #define user_tray_2_down_power_slow       -60
 #define user_tray_2_down_power_super_slow -20
 
-#define user_tray_2_up_pos_1   1500
+#define user_tray_2_up_pos_1   1300
 #define user_tray_2_up_pos_2   2250
 #define user_tray_2_up_pos_3   2850
 #define user_tray_2_down_pos_1  300
