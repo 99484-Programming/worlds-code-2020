@@ -146,7 +146,7 @@ void user_intake_2 ()
   {
     intake_set(user_intake_2_intake_slow_power);
   }
-  else if (ctlr_buttonL1) // outtaking
+  else if (ctlr_buttonR2) // outtaking
   {
     intake_set(user_intake_2_outtake_fast_power);
   }
@@ -326,9 +326,9 @@ void user_arm_tray_1 ()
     user_arm_tray_1_tray_automatic = 2;
     user_arm_tray_1_arm_automatic = 0;
   }
-  else if (user_arm_tray_1_arm_down_button_duration >= 750)
+  else if (user_arm_tray_1_arm_down_button_duration >= 500)
   {
-    user_arm_tray_1_tray_automatic = 0;
+    user_arm_tray_1_tray_automatic = 1;
     user_arm_tray_1_arm_automatic = 1;
   }
 
@@ -337,25 +337,36 @@ void user_arm_tray_1 ()
   {
     if (tray.rotation_get() < user_arm_tray_1_tray_3) // if the tray is too low
     {
-      tray.set_target(user_arm_tray_1_tray_auto_up_pwr);
+      if (arm.rotation_get() > user_arm_tray_1_arm_2)
+      {
+        tray.set_target(user_arm_tray_1_tray_auto_up_pwr);
+      }
+      else
+      {
+        tray.set_target(user_arm_tray_1_tray_auto_up_pwr/2);
+      }
     }
-    else if (tray.rotation_get() > user_arm_tray_1_tray_3)  // if the tray is above the target
+    else if (tray.rotation_get() >= user_arm_tray_1_tray_3 && tray.rotation_get() < user_arm_tray_1_tray_3 + user_arm_tray_1_tray_moe)  // if the tray is above the target
     {
-      if (tray.rotation_get() > user_arm_tray_1_tray_3 + user_arm_tray_1_tray_moe) // if the tray is in the margin of error
-      {
-        tray.set_target(0);
-      }
-      else // if the tray is too high
-      {
-        tray.set_target(user_arm_tray_1_tray_auto_down_pwr);
-      }
+      tray.set_target(0);
+    }
+    else // if the tray is too high
+    {
+      tray.set_target(user_arm_tray_1_tray_auto_down_pwr);
     }
   }
   else if (user_arm_tray_1_tray_automatic == 1) // if the tray target is down
   {
-    if (tray.rotation_get() > user_arm_tray_1_tray_1) // if the tray is too high
+    if (tray.rotation_get() > user_arm_tray_1_tray_0) // if the tray is too high
     {
-      tray.set_target(user_arm_tray_1_tray_auto_down_pwr);
+      if (arm.rotation_get() < user_arm_tray_1_arm_2)
+      {
+        tray.set_target(user_arm_tray_1_tray_auto_down_pwr);
+      }
+      else
+      {
+        tray.set_target(0);
+      }
     }
     else // if the tray is down - DONE
     {
@@ -392,6 +403,10 @@ void user_arm_tray_1 ()
     {
       tray.set_target(user_tray_2_down_power_fast);
     }
+    else
+    {
+      tray.set_target(0);
+    }
   }
 
   // arm usercontrol
@@ -416,6 +431,10 @@ void user_arm_tray_1 ()
     else if (user_arm_tray_1_arm_down)
     {
       arm.set_target(user_arm_tray_1_arm_down_pwr);
+    }
+    else
+    {
+      arm.set_target(0);
     }
   }
 }

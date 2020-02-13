@@ -42,6 +42,7 @@ void motors_update_vars ()
   intake_l.update_vars();
   intake_r.update_vars();
   tray.update_vars();
+  arm.update_vars();
 }
 // update power vel
 void motors_update_power_vel ()
@@ -53,6 +54,7 @@ void motors_update_power_vel ()
   intake_l.update_power_vel();
   intake_r.update_power_vel();
   tray.update_power_vel();
+  arm.update_power_vel();
 }
 // update power vol
 void motors_update_power_vol ()
@@ -64,6 +66,7 @@ void motors_update_power_vol ()
   intake_l.update_power_vol();
   intake_r.update_power_vol();
   tray.update_power_vol();
+  arm.update_power_vol();
 }
 // update power
 void motors_update_power ()
@@ -75,6 +78,7 @@ void motors_update_power ()
   intake_l.update_power();
   intake_r.update_power();
   tray.update_power();
+  arm.update_power();
 }
 // update rotation vars
 void motors_update_rotation_vars ()
@@ -86,6 +90,7 @@ void motors_update_rotation_vars ()
   intake_l.update_rotation_vars();
   intake_r.update_rotation_vars();
   tray.update_rotation_vars();
+  arm.update_rotation_vars();
 }
 
 // reset rotation =================================================================================
@@ -114,4 +119,5 @@ void motors_reset_rotation ()
   chassis_reset_rotation();
   intake_reset_rotation();
   tray.rotation_reset();
+  arm.rotation_reset();
 }

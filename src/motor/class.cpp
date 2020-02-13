@@ -46,27 +46,24 @@ void Motor::update_vars ()
 
 void Motor::update_power_vel ()
 {
-  if (actual_power != 0)
-  {
-    spin(vex::directionType::fwd, actual_power, vex::velocityUnits::pct);
-  }
-  else
-  {
-    switch (brake_type)
-    {
-      case -1 :
-        spin(vex::directionType::fwd, 0, vex::velocityUnits::pct);
-      case 0 :
-        setBrake(vex::brakeType::brake);
-        break;
-      case 1 :
-        setBrake(vex::brakeType::coast);
-        break;
-      case 2 :
-        setBrake(vex::brakeType::hold);
-        break;
-    }
-  }
+  spin(vex::directionType::fwd, actual_power, vex::velocityUnits::pct);
+  // else
+  // {
+  //   switch (brake_type)
+  //   {
+  //     case -1 :
+  //       spin(vex::directionType::fwd, 0, vex::velocityUnits::pct);
+  //     case 0 :
+  //       setBrake(vex::brakeType::brake);
+  //       break;
+  //     case 1 :
+  //       setBrake(vex::brakeType::coast);
+  //       break;
+  //     case 2 :
+  //       setBrake(vex::brakeType::hold);
+  //       break;
+  //   }
+  // }
 }
 
 void Motor::update_power_vol ()

@@ -76,6 +76,9 @@ void usercontrol( void )
   motors_reset_rotation();
   debug_print_initial();
   
+  arm.setBrake(vex::brakeType::hold);
+  tray.setBrake(vex::brakeType::hold);
+
   while (true)
   {
     // variable updates
@@ -87,6 +90,7 @@ void usercontrol( void )
     user_tank_2();
     user_intake_2();
     user_arm_tray_1();
+    // user_arm_1();
 
     // slew rate & such
     motors_update_vars();

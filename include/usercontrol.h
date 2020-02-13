@@ -95,15 +95,17 @@ void user_arm_1 () ;
 #define user_arm_tray_1_tray_moe 50 // 
 #define user_arm_tray_1_arm_moe  25 // 
 
+#define user_arm_tray_1_tray_0    -50 // automatic movment position - down
 #define user_arm_tray_1_tray_1    100 // slow down tray
 #define user_arm_tray_1_tray_2    300 // tray is down
-#define user_arm_tray_1_tray_3   1300 // automatic movement position
-#define user_arm_tray_1_tray_4   1500 // start slowing down position
+#define user_arm_tray_1_tray_3   1000 // automatic movement position
+#define user_arm_tray_1_tray_4   1300 // start slowing down position
 #define user_arm_tray_1_tray_5   2250 // even slower
-#define user_arm_tray_1_tray_6   2850 // very top position
-#define user_arm_tray_1_tray_7   2900 // physical limit
+#define user_arm_tray_1_tray_6   2950 // very top position
+#define user_arm_tray_1_tray_7   3000 // physical limit
 
 #define user_arm_tray_1_arm_1    0 // position for intaking
+#define user_arm_tray_1_arm_2 1200 // tray safe value
 // #define user_arm_tray_1_arm_3  700 // low towers
 // #define user_arm_tray_1_arm_4 1400 // high towers
 #define user_arm_tray_1_arm_5 2100 // upper limit for the arm

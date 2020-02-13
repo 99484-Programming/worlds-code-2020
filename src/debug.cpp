@@ -90,6 +90,10 @@ void debug_print ()
       i->print_rotation_change();
     }
 
+    Brain.Screen.newLine(); Brain.Screen.print("tray auto: %d", user_arm_tray_1_tray_automatic);
+    Brain.Screen.newLine(); Brain.Screen.print("arm auto: %d", user_arm_tray_1_arm_automatic);
+    Brain.Screen.newLine(); Brain.Screen.print("hello");
+
     std::cout << "0" << std::endl;
   }
 }
