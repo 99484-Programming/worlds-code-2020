@@ -146,7 +146,7 @@ void user_intake_2 ()
   {
     intake_set(user_intake_2_intake_slow_power);
   }
-  else if (ctlr_buttonL1) // outtaking
+  else if (ctlr_buttonR2) // outtaking
   {
     intake_set(user_intake_2_outtake_fast_power);
   }
@@ -339,21 +339,18 @@ void user_arm_tray_1 ()
     {
       tray.set_target(user_arm_tray_1_tray_auto_up_pwr);
     }
-    else if (tray.rotation_get() > user_arm_tray_1_tray_3)  // if the tray is above the target
+    else if (tray.rotation_get() >= user_arm_tray_1_tray_3 && tray.rotation_get() < user_arm_tray_1_tray_3 + user_arm_tray_1_tray_moe)  // if the tray is above the target
     {
-      if (tray.rotation_get() > user_arm_tray_1_tray_3 + user_arm_tray_1_tray_moe) // if the tray is in the margin of error
-      {
-        tray.set_target(10);
-      }
-      else // if the tray is too high
-      {
-        tray.set_target(user_arm_tray_1_tray_auto_down_pwr);
-      }
+      tray.set_target(0);
+    }
+    else // if the tray is too high
+    {
+      tray.set_target(user_arm_tray_1_tray_auto_down_pwr);
     }
   }
   else if (user_arm_tray_1_tray_automatic == 1) // if the tray target is down
   {
-    if (tray.rotation_get() > user_arm_tray_1_tray_1) // if the tray is too high
+    if (tray.rotation_get() > -50) // if the tray is too high
     {
       tray.set_target(user_arm_tray_1_tray_auto_down_pwr);
     }

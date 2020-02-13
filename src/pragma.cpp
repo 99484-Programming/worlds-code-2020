@@ -13,8 +13,8 @@ Motor right_front ( "right front"  , vex::PORT20 , true    , 0          , false 
 Motor right_back  ( "right back"   , vex::PORT19 , true    , 0          , false , false    , false   , false   , true  , false );
 Motor intake_l    ( "left intake"  , vex::PORT3  , false   , 0          , false , false    , false   , false   , true  , false );
 Motor intake_r    ( "right intake" , vex::PORT10 , true    , 0          , false , false    , false   , false   , true  , false );
-Motor tray        ( "tray"         , vex::PORT11 , false   , 0          , false , false    , false   , false   , true  , false );
-Motor arm         ( "arm"          , vex::PORT9  , true    , 0          , false , false    , false   , false   , true ,  false );
+Motor tray        ( "tray"         , vex::PORT11 , false   , 2          , false , false    , false   , false   , true  , false );
+Motor arm         ( "arm"          , vex::PORT9  , true    , 2          , false , false    , false   , false   , true ,  false );
 
 std::list<Motor> Motors = {left_front  ,
 /* ==================== */ left_back   ,
