@@ -1,3 +1,4 @@
+// for debugging arm and tray control
 #include "vex.h"
 #include "pragma.h"
 #include "controller.h"
