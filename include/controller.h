@@ -64,6 +64,19 @@ extern int ctlr_buttonDOWN_released  ;
 extern int ctlr_buttonLEFT_released  ;
 extern int ctlr_buttonRIGHT_released ;
 
+extern int ctlr_buttonR1_duration    ;
+extern int ctlr_buttonR2_duration    ;
+extern int ctlr_buttonL1_duration    ;
+extern int ctlr_buttonL2_duration    ;
+extern int ctlr_buttonA_duration     ;
+extern int ctlr_buttonB_duration     ;
+extern int ctlr_buttonX_duration     ;
+extern int ctlr_buttonY_duration     ;
+extern int ctlr_buttonUP_duration    ;
+extern int ctlr_buttonDOWN_duration  ;
+extern int ctlr_buttonLEFT_duration  ;
+extern int ctlr_buttonRIGHT_duration ;
+
 void ctlr_updateVars();
 
 #endif
