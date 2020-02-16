@@ -1,3 +1,4 @@
+// change - plz delete later ======================================================================
 #include "vex.h"
 #include "pragma.h"
 #include "controller.h"
@@ -73,7 +74,7 @@ void autonomous( void )
 // all code for the usercontrol section goes in here ==============================================
 void usercontrol( void )
 {
-  motors_reset_rotation();
+  motors_rotation_reset();
   debug_print_initial();
   
   arm.setBrake(vex::brakeType::hold);

@@ -35,89 +35,69 @@ void motors_set (int input)
 // update vars
 void motors_update_vars ()
 {
-  left_front.update_vars();
-  left_back.update_vars();
-  right_front.update_vars();
-  right_back.update_vars();
-  intake_l.update_vars();
-  intake_r.update_vars();
-  tray.update_vars();
-  arm.update_vars();
+  for (std::list<Motor>::iterator it=Motors.begin(); it != Motors.end(); ++it)
+  {
+    it->update_vars();
+  }
 }
 // update power vel
 void motors_update_power_vel ()
 {
-  left_front.update_power_vel();
-  left_back.update_power_vel();
-  right_front.update_power_vel();
-  right_back.update_power_vel();
-  intake_l.update_power_vel();
-  intake_r.update_power_vel();
-  tray.update_power_vel();
-  arm.update_power_vel();
+  for (std::list<Motor>::iterator it=Motors.begin(); it != Motors.end(); ++it)
+  {
+    it->update_power_vel();
+  }
 }
 // update power vol
 void motors_update_power_vol ()
 {
-  left_front.update_power_vol();
-  left_back.update_power_vol();
-  right_front.update_power_vol();
-  right_back.update_power_vol();
-  intake_l.update_power_vol();
-  intake_r.update_power_vol();
-  tray.update_power_vol();
-  arm.update_power_vol();
+  for (std::list<Motor>::iterator it=Motors.begin(); it != Motors.end(); ++it)
+  {
+    it->update_power_vol();
+  }
 }
 // update power
 void motors_update_power ()
 {
-  left_front.update_power();
-  left_back.update_power();
-  right_front.update_power();
-  right_back.update_power();
-  intake_l.update_power();
-  intake_r.update_power();
-  tray.update_power();
-  arm.update_power();
+  for (std::list<Motor>::iterator it=Motors.begin(); it != Motors.end(); ++it)
+  {
+    it->update_power();
+  }
 }
 // update rotation vars
 void motors_update_rotation_vars ()
 {
-  left_front.update_rotation_vars();
-  left_back.update_rotation_vars();
-  right_front.update_rotation_vars();
-  right_back.update_rotation_vars();
-  intake_l.update_rotation_vars();
-  intake_r.update_rotation_vars();
-  tray.update_rotation_vars();
-  arm.update_rotation_vars();
+  for (std::list<Motor>::iterator it=Motors.begin(); it != Motors.end(); ++it)
+  {
+    it->update_rotation_vars();
+  }
 }
 
 // reset rotation =================================================================================
-void left_reset_rotation ()
+void left_rotation_reset ()
 {
   left_front.rotation_reset();
   left_back.rotation_reset();
 }
-void right_reset_rotation ()
+void right_rotation_reset ()
 {
   right_front.rotation_reset();
   right_back.rotation_reset();
 }
 void chassis_reset_rotation ()
 {
-  left_reset_rotation();
-  right_reset_rotation();
+  left_rotation_reset();
+  right_rotation_reset();
 }
-void intake_reset_rotation ()
+void intake_rotation_reset ()
 {
   intake_l.rotation_reset();
   intake_r.rotation_reset();
 }
-void motors_reset_rotation ()
+void motors_rotation_reset ()
 {
-  chassis_reset_rotation();
-  intake_reset_rotation();
-  tray.rotation_reset();
-  arm.rotation_reset();
+  for (std::list<Motor>::iterator it=Motors.begin(); it != Motors.end(); ++it)
+  {
+    it->rotation_reset();
+  }
 }

@@ -492,17 +492,21 @@ Discarded input sections
                 0x0000000000000000       0x6c build/src/motor/functions.o
  .ARM.exidx.text._Z23motors_update_power_volv
                 0x0000000000000000        0x8 build/src/motor/functions.o
- .text._Z19left_reset_rotationv
+ .text._Z19left_rotation_resetv
                 0x0000000000000000       0x24 build/src/motor/functions.o
- .ARM.exidx.text._Z19left_reset_rotationv
+ .ARM.exidx.text._Z19left_rotation_resetv
                 0x0000000000000000        0x8 build/src/motor/functions.o
- .text._Z20right_reset_rotationv
+ .text._Z20right_rotation_resetv
                 0x0000000000000000       0x24 build/src/motor/functions.o
- .ARM.exidx.text._Z20right_reset_rotationv
+ .ARM.exidx.text._Z20right_rotation_resetv
                 0x0000000000000000        0x8 build/src/motor/functions.o
- .text._Z21intake_reset_rotationv
+ .text._Z22chassis_reset_rotationv
+                0x0000000000000000       0x3c build/src/motor/functions.o
+ .ARM.exidx.text._Z22chassis_reset_rotationv
+                0x0000000000000000        0x8 build/src/motor/functions.o
+ .text._Z21intake_rotation_resetv
                 0x0000000000000000       0x24 build/src/motor/functions.o
- .ARM.exidx.text._Z21intake_reset_rotationv
+ .ARM.exidx.text._Z21intake_rotation_resetv
                 0x0000000000000000        0x8 build/src/motor/functions.o
  .llvm_addrsig  0x0000000000000000        0xc build/src/motor/functions.o
  .text          0x0000000000000000        0x0 /Applications/VEXcode V5 Text.app/Contents/Resources/sdk/vexv5/libv5rt.a(v5_startup.c.obj)
