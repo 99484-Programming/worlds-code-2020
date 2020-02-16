@@ -4,10 +4,12 @@
 #include "vex.h"
 #include "pragma.h"
 
+// stores current axis values
 extern int ctlr_axis1       ;
 extern int ctlr_axis2       ;
 extern int ctlr_axis3       ;
 extern int ctlr_axis4       ;
+// stores current button values
 extern int ctlr_buttonR1    ;
 extern int ctlr_buttonR2    ;
 extern int ctlr_buttonL1    ;
@@ -21,10 +23,12 @@ extern int ctlr_buttonDOWN  ;
 extern int ctlr_buttonLEFT  ;
 extern int ctlr_buttonRIGHT ;
 
+// stores previous axis values
 extern int ctlr_axis1_prev       ;
 extern int ctlr_axis2_prev       ;
 extern int ctlr_axis3_prev       ;
 extern int ctlr_axis4_prev       ;
+// stores previous button values
 extern int ctlr_buttonR1_prev    ;
 extern int ctlr_buttonR2_prev    ;
 extern int ctlr_buttonL1_prev    ;
@@ -38,6 +42,7 @@ extern int ctlr_buttonDOWN_prev  ;
 extern int ctlr_buttonLEFT_prev  ;
 extern int ctlr_buttonRIGHT_prev ;
 
+// whether a button has been toggled from 0 to 1
 extern int ctlr_buttonR1_pressed    ;
 extern int ctlr_buttonR2_pressed    ;
 extern int ctlr_buttonL1_pressed    ;
@@ -51,6 +56,7 @@ extern int ctlr_buttonDOWN_pressed  ;
 extern int ctlr_buttonLEFT_pressed  ;
 extern int ctlr_buttonRIGHT_pressed ;
 
+// whether a button has been toggled from 1 to 0
 extern int ctlr_buttonR1_released    ;
 extern int ctlr_buttonR2_released    ;
 extern int ctlr_buttonL1_released    ;
@@ -64,6 +70,7 @@ extern int ctlr_buttonDOWN_released  ;
 extern int ctlr_buttonLEFT_released  ;
 extern int ctlr_buttonRIGHT_released ;
 
+// how long a button has been held down
 extern int ctlr_buttonR1_duration    ;
 extern int ctlr_buttonR2_duration    ;
 extern int ctlr_buttonL1_duration    ;
@@ -77,6 +84,7 @@ extern int ctlr_buttonDOWN_duration  ;
 extern int ctlr_buttonLEFT_duration  ;
 extern int ctlr_buttonRIGHT_duration ;
 
+// update function to run each cycle of the usercontrol while loop
 void ctlr_updateVars();
 
 #endif

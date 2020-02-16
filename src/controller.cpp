@@ -1,10 +1,12 @@
 #include "vex.h"
 #include "pragma.h"
 
+// has current axis value, -100~100
 int ctlr_axis1       = 0 ;
 int ctlr_axis2       = 0 ;
 int ctlr_axis3       = 0 ;
 int ctlr_axis4       = 0 ;
+// has current button position, 0 or 1
 int ctlr_buttonR1    = 0 ;
 int ctlr_buttonR2    = 0 ;
 int ctlr_buttonL1    = 0 ;
@@ -18,10 +20,12 @@ int ctlr_buttonDOWN  = 0 ;
 int ctlr_buttonLEFT  = 0 ;
 int ctlr_buttonRIGHT = 0 ;
 
+// stores previous axis values
 int ctlr_axis1_prev       = 0 ;
 int ctlr_axis2_prev       = 0 ;
 int ctlr_axis3_prev       = 0 ;
 int ctlr_axis4_prev       = 0 ;
+// stores previous button values
 int ctlr_buttonR1_prev    = 0 ;
 int ctlr_buttonR2_prev    = 0 ;
 int ctlr_buttonL1_prev    = 0 ;
@@ -35,6 +39,7 @@ int ctlr_buttonDOWN_prev  = 0 ;
 int ctlr_buttonLEFT_prev  = 0 ;
 int ctlr_buttonRIGHT_prev = 0 ;
 
+// 0 or 1, whether the button has been toggled from off to on in the last iteration
 int ctlr_buttonR1_pressed    = 0 ;
 int ctlr_buttonR2_pressed    = 0 ;
 int ctlr_buttonL1_pressed    = 0 ;
@@ -48,6 +53,7 @@ int ctlr_buttonDOWN_pressed  = 0 ;
 int ctlr_buttonLEFT_pressed  = 0 ;
 int ctlr_buttonRIGHT_pressed = 0 ;
 
+// 0 or 1, whether the button has been toggled from on to off in the last iteration
 int ctlr_buttonR1_released    = 0 ;
 int ctlr_buttonR2_released    = 0 ;
 int ctlr_buttonL1_released    = 0 ;
@@ -61,6 +67,7 @@ int ctlr_buttonDOWN_released  = 0 ;
 int ctlr_buttonLEFT_released  = 0 ;
 int ctlr_buttonRIGHT_released = 0 ;
 
+// how long the button has been pressed down in milliseconds
 int ctlr_buttonR1_duration    = 0 ;
 int ctlr_buttonR2_duration    = 0 ;
 int ctlr_buttonL1_duration    = 0 ;
@@ -74,8 +81,10 @@ int ctlr_buttonDOWN_duration  = 0 ;
 int ctlr_buttonLEFT_duration  = 0 ;
 int ctlr_buttonRIGHT_duration = 0 ;
 
+// update function to run each cycle of the usercontrol while loop
 void ctlr_updateVars()
 {
+  // stores the previous iteration's axis and button values
   ctlr_axis1_prev       = ctlr_axis1       ;
   ctlr_axis2_prev       = ctlr_axis2       ;
   ctlr_axis3_prev       = ctlr_axis3       ;
@@ -93,6 +102,7 @@ void ctlr_updateVars()
   ctlr_buttonLEFT_prev  = ctlr_buttonLEFT  ;
   ctlr_buttonRIGHT_prev = ctlr_buttonRIGHT ;
 
+  // get new values to store in variables
   ctlr_axis1       = Controller_1.Axis1.value()          ;
   ctlr_axis2       = Controller_1.Axis2.value()          ;
   ctlr_axis3       = Controller_1.Axis3.value()          ;
@@ -110,6 +120,7 @@ void ctlr_updateVars()
   ctlr_buttonLEFT  = Controller_1.ButtonLeft.pressing()  ;
   ctlr_buttonRIGHT = Controller_1.ButtonRight.pressing() ;
 
+  // compute whether a button has been toggled from 0 to 1
   ctlr_buttonR1_pressed    = (ctlr_buttonR1_prev    == 0 && ctlr_buttonR1    == 1) ? 1 : 0;
   ctlr_buttonR2_pressed    = (ctlr_buttonR2_prev    == 0 && ctlr_buttonR2    == 1) ? 1 : 0;
   ctlr_buttonL1_pressed    = (ctlr_buttonL1_prev    == 0 && ctlr_buttonL1    == 1) ? 1 : 0;
@@ -123,6 +134,7 @@ void ctlr_updateVars()
   ctlr_buttonLEFT_pressed  = (ctlr_buttonLEFT_prev  == 0 && ctlr_buttonLEFT  == 1) ? 1 : 0;
   ctlr_buttonRIGHT_pressed = (ctlr_buttonRIGHT_prev == 0 && ctlr_buttonRIGHT == 1) ? 1 : 0;
 
+  // compute whether a button has been toggled from 1 to 0
   ctlr_buttonR1_released    = (ctlr_buttonR1_prev    == 1 && ctlr_buttonR1    == 0) ? 1 : 0;
   ctlr_buttonR2_released    = (ctlr_buttonR2_prev    == 1 && ctlr_buttonR2    == 0) ? 1 : 0;
   ctlr_buttonL1_released    = (ctlr_buttonL1_prev    == 1 && ctlr_buttonL1    == 0) ? 1 : 0;
@@ -136,6 +148,7 @@ void ctlr_updateVars()
   ctlr_buttonLEFT_released  = (ctlr_buttonLEFT_prev  == 1 && ctlr_buttonLEFT  == 0) ? 1 : 0;
   ctlr_buttonRIGHT_released = (ctlr_buttonRIGHT_prev == 1 && ctlr_buttonRIGHT == 0) ? 1 : 0;
 
+  // update button duration variables
   ctlr_buttonR1_duration    = (ctlr_buttonR1   ) ? ctlr_buttonR1_duration    + 20 : 0;
   ctlr_buttonR2_duration    = (ctlr_buttonR2   ) ? ctlr_buttonR2_duration    + 20 : 0;
   ctlr_buttonL1_duration    = (ctlr_buttonL1   ) ? ctlr_buttonL1_duration    + 20 : 0;
