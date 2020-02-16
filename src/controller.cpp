@@ -81,6 +81,7 @@ int ctlr_buttonDOWN_duration  = 0 ;
 int ctlr_buttonLEFT_duration  = 0 ;
 int ctlr_buttonRIGHT_duration = 0 ;
 
+// update function to run each cycle of the usercontrol while loop
 void ctlr_updateVars()
 {
   // stores the previous iteration's axis and button values
