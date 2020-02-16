@@ -61,6 +61,19 @@ int ctlr_buttonDOWN_released  = 0 ;
 int ctlr_buttonLEFT_released  = 0 ;
 int ctlr_buttonRIGHT_released = 0 ;
 
+int ctlr_buttonR1_duration    = 0 ;
+int ctlr_buttonR2_duration    = 0 ;
+int ctlr_buttonL1_duration    = 0 ;
+int ctlr_buttonL2_duration    = 0 ;
+int ctlr_buttonA_duration     = 0 ;
+int ctlr_buttonB_duration     = 0 ;
+int ctlr_buttonX_duration     = 0 ;
+int ctlr_buttonY_duration     = 0 ;
+int ctlr_buttonUP_duration    = 0 ;
+int ctlr_buttonDOWN_duration  = 0 ;
+int ctlr_buttonLEFT_duration  = 0 ;
+int ctlr_buttonRIGHT_duration = 0 ;
+
 void ctlr_updateVars()
 {
   ctlr_axis1_prev       = ctlr_axis1       ;
@@ -122,4 +135,17 @@ void ctlr_updateVars()
   ctlr_buttonDOWN_released  = (ctlr_buttonDOWN_prev  == 1 && ctlr_buttonDOWN  == 0) ? 1 : 0;
   ctlr_buttonLEFT_released  = (ctlr_buttonLEFT_prev  == 1 && ctlr_buttonLEFT  == 0) ? 1 : 0;
   ctlr_buttonRIGHT_released = (ctlr_buttonRIGHT_prev == 1 && ctlr_buttonRIGHT == 0) ? 1 : 0;
+
+  ctlr_buttonR1_duration    = (ctlr_buttonR1   ) ? ctlr_buttonR1_duration    + 20 : 0;
+  ctlr_buttonR2_duration    = (ctlr_buttonR2   ) ? ctlr_buttonR2_duration    + 20 : 0;
+  ctlr_buttonL1_duration    = (ctlr_buttonL1   ) ? ctlr_buttonL1_duration    + 20 : 0;
+  ctlr_buttonL2_duration    = (ctlr_buttonL2   ) ? ctlr_buttonL2_duration    + 20 : 0;
+  ctlr_buttonA_duration     = (ctlr_buttonA    ) ? ctlr_buttonA_duration     + 20 : 0;
+  ctlr_buttonB_duration     = (ctlr_buttonB    ) ? ctlr_buttonB_duration     + 20 : 0;
+  ctlr_buttonX_duration     = (ctlr_buttonX    ) ? ctlr_buttonX_duration     + 20 : 0;
+  ctlr_buttonY_duration     = (ctlr_buttonY    ) ? ctlr_buttonY_duration     + 20 : 0;
+  ctlr_buttonUP_duration    = (ctlr_buttonUP   ) ? ctlr_buttonUP_duration    + 20 : 0;
+  ctlr_buttonDOWN_duration  = (ctlr_buttonDOWN ) ? ctlr_buttonDOWN_duration  + 20 : 0;
+  ctlr_buttonLEFT_duration  = (ctlr_buttonLEFT ) ? ctlr_buttonLEFT_duration  + 20 : 0;
+  ctlr_buttonRIGHT_duration = (ctlr_buttonRIGHT) ? ctlr_buttonRIGHT_duration + 20 : 0;
 }
