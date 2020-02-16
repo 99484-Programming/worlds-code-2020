@@ -5,7 +5,7 @@
 void auton_standard_initialize ()
 {
   // set rotation values to zero
-  motors_reset_rotation();
+  motors_rotation_reset();
   // print for spreadsheet compatability
   debug_print_initial();
 }
@@ -76,7 +76,7 @@ void a_wait (int input_time)
 void a_reset_and_wait (int time_input)
 {
   a_wait(time_input/2);
-  chassis_reset_rotation();
+  chassis_rotation_reset();
   a_wait(time_input/2);
 }
 
@@ -104,7 +104,7 @@ void a_drive (double power_input, int time_input)
 // turn(target, power) ::: yes reset
 void a_turn (double target_input, int power_input)
 {
-  chassis_reset_rotation();
+  chassis_rotation_reset();
   auton_turn_1_set(target_input, power_input);
   while (!auton_turn_1_done())
   {
@@ -226,7 +226,7 @@ void auton_straight_1_set (double target, int base_power)
   auton_straight_1_target = target;
   auton_straight_1_base_power = base_power;
   // position vars
-  right_reset_rotation();
+  right_rotation_reset();
   auton_straight_1_initial_side_diff = left_front.rotation_get();
 }
 
@@ -299,7 +299,7 @@ void auton_straight_2_set (double target, int base_power)
   auton_straight_2_target = target;
   auton_straight_2_base_power = base_power;
   // position vars
-  right_reset_rotation();
+  right_rotation_reset();
   auton_straight_2_initial_side_diff = left_front.rotation_get();
 }
 
@@ -372,7 +372,7 @@ void auton_straight_3_set (double target, int base_power)
   auton_straight_3_target = target;
   auton_straight_3_base_power = base_power;
   // position vars
-  // right_reset_rotation();
+  // right_rotation_reset();
   // auton_straight_3_initial_side_diff = left_front.rotation_get();
 }
 
@@ -436,7 +436,7 @@ void auton_turn_1_set (double target_input, double power_input)
   // reset variables
   auton_turn_1_pos   = 0;
   auton_turn_1_error = 0;
-  chassis_reset_rotation();
+  chassis_rotation_reset();
   // set user input variables
   auton_turn_1_target = target_input;
   auton_turn_1_base_power = power_input;

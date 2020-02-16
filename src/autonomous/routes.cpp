@@ -457,7 +457,7 @@ void auton_route_12 ()
   int dist1 = 4000;
   left_set(pwr2);
   right_set(pwr3);
-  chassis_reset_rotation();
+  chassis_rotation_reset();
   while (right_front.rotation_get() < dist1)
   {
     auton_standard_update_beg();auton_standard_update_fin();
@@ -468,7 +468,7 @@ void auton_route_12 ()
   a_wait(500);
 
   // grab another cube
-  chassis_reset_rotation();
+  chassis_rotation_reset();
   intake_set(100);
   a_forward(1000, 25);
   auton_intake_1_stop();

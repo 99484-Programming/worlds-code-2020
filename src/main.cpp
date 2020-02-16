@@ -74,7 +74,7 @@ void autonomous( void )
 // all code for the usercontrol section goes in here ==============================================
 void usercontrol( void )
 {
-  motors_reset_rotation();
+  motors_rotation_reset();
   debug_print_initial();
   
   while (true)
