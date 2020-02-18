@@ -73,12 +73,9 @@ void autonomous( void )
 // all code for the usercontrol section goes in here ==============================================
 void usercontrol( void )
 {
-  motors_rotation_reset();
+  motors_reset_rotation();
   debug_print_initial();
   
-  arm.setBrake(vex::brakeType::hold);
-  tray.setBrake(vex::brakeType::hold);
-
   while (true)
   {
     // variable updates
@@ -89,10 +86,8 @@ void usercontrol( void )
     // usercontrol
     user_tank_2();
     user_intake_2();
-    // user_tray_2();
-    // user_arm_1();
-    user_arm_tray_1();
-    // user_arm_1();
+    user_tilter_2();
+    user_arm_josh();
 
     // slew rate & such
     motors_update_vars();

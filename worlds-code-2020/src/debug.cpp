@@ -90,9 +90,9 @@ void debug_print ()
       i->print_rotation_change();
     }
 
-    Brain.Screen.newLine(); Brain.Screen.print("tray auto: %d", user_arm_tray_1_tray_automatic);
-    Brain.Screen.newLine(); Brain.Screen.print("arm auto: %d", user_arm_tray_1_arm_automatic);
-    Brain.Screen.newLine(); Brain.Screen.print("hello");
+    Brain.Screen.print("done var : %d", user_tilter_3_setup_done); Brain.Screen.newLine();
+    // Brain.Screen.print("error : %f", auton_turn_1_error);    Brain.Screen.newLine();
+    // Brain.Screen.print("pos : %f", auton_turn_1_pos);
 
     std::cout << "0" << std::endl;
   }

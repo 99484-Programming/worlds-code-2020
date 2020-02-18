@@ -19,10 +19,10 @@ void motors_update_power         () ; // update power
 void motors_update_rotation_vars () ; // update rotation vars
 
 // reset rotation =================================================================================
-void left_rotation_reset    ();
-void right_rotation_reset   ();
-void chassis_rotation_reset ();
-void intake_rotation_reset  ();
-void motors_rotation_reset  ();
+void left_reset_rotation ();
+void right_reset_rotation ();
+void chassis_reset_rotation ();
+void intake_reset_rotation ();
+void motors_reset_rotation ();
 
 #endif
