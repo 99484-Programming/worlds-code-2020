@@ -76,6 +76,8 @@ void usercontrol( void )
   motors_reset_rotation();
   debug_print_initial();
   
+  int time = 0;
+
   while (true)
   {
     // variable updates
@@ -84,8 +86,17 @@ void usercontrol( void )
     motors_update_rotation_vars();
 
     // usercontrol
-    user_tank_2();
+    if (time < 1000)
+    {
+      intake(-100);
+    }
+    
+    else
+    {
     user_intake_2();
+    }
+
+    user_tank_2();
     user_arm_tray_1();
 
     // slew rate & such
@@ -99,6 +110,7 @@ void usercontrol( void )
 
     //Sleep the task for a short amount of time to prevent wasted resources. 
     vex::task::sleep(20);
+    time += 20;
   }
 }
 
