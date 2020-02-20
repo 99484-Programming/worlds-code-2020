@@ -78,6 +78,7 @@ void usercontrol( void )
   
   arm.setBrake(vex::brakeType::hold);
   tray.setBrake(vex::brakeType::hold);
+  int time = 0;
 
   while (true)
   {
@@ -87,12 +88,18 @@ void usercontrol( void )
     motors_update_rotation_vars();
 
     // usercontrol
-    user_tank_2();
+    if (time < 1000)
+    {
+      intake(-100);
+    }
+    
+    else
+    {
     user_intake_2();
-    // user_tray_2();
-    // user_arm_1();
+    }
+
+    user_tank_2();
     user_arm_tray_1();
-    // user_arm_1();
 
     // slew rate & such
     motors_update_vars();
@@ -105,6 +112,7 @@ void usercontrol( void )
 
     //Sleep the task for a short amount of time to prevent wasted resources. 
     vex::task::sleep(20);
+    time += 20;
   }
 }
 

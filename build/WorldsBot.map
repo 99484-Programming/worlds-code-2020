@@ -94,10 +94,6 @@ Discarded input sections
                 0x0000000000000000       0x94 build/src/sejun_code.o
  .ARM.exidx.text._Z15Chassis_forwardi
                 0x0000000000000000        0x8 build/src/sejun_code.o
- .text._Z6intakei
-                0x0000000000000000       0x5c build/src/sejun_code.o
- .ARM.exidx.text._Z6intakei
-                0x0000000000000000        0x8 build/src/sejun_code.o
  .text._Z13Chassis_righti
                 0x0000000000000000       0x5c build/src/sejun_code.o
  .ARM.exidx.text._Z13Chassis_righti
@@ -3546,17 +3542,10 @@ Linker script and memory map
 .eh_frame
  *(.eh_frame)
 
-.eh_framehdr    0x00000000038050a4        0x0
                 0x00000000038050a4                __eh_framehdr_start = .
  *(.eh_framehdr)
                 0x00000000038050a4                __eh_framehdr_end = .
 
-.gcc_except_table
- *(.gcc_except_table)
-
-.mmu_tbl        0x0000000003808000        0x0
-                0x0000000003808000                __mmu_tbl_start = .
- *(.mmu_tbl)
                 0x0000000003808000                __mmu_tbl_end = .
 
 .ARM.exidx      0x00000000038050a4        0x8
