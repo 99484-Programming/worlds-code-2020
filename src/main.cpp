@@ -92,7 +92,6 @@ void usercontrol( void )
     {
       intake(-100);
     }
-    
     else
     {
     user_intake_2();
