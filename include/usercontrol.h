@@ -110,10 +110,11 @@ void user_arm_1 () ;
 // #define user_arm_tray_1_arm_4 1400 // high towers
 #define user_arm_tray_1_arm_5 2100 // upper limit for the arm
 
-#define user_arm_tray_1_tray_up   ctlr_buttonRIGHT
-#define user_arm_tray_1_tray_down ctlr_buttonDOWN
-#define user_arm_tray_1_arm_up    ctlr_buttonY
-#define user_arm_tray_1_arm_down  ctlr_buttonB
+#define user_arm_tray_1_tray_up           ctlr_buttonRIGHT
+#define user_arm_tray_1_tray_down         ctlr_buttonDOWN
+#define user_arm_tray_1_arm_up            ctlr_buttonY
+#define user_arm_tray_1_arm_down          ctlr_buttonB
+#define user_arm_tray_1_arm_down_duration ctlr_buttonB_duration
 
 #define user_arm_tray_1_tray_up_pwr_1      100 // default power
 #define user_arm_tray_1_tray_up_pwr_2       30 // slow power 1
@@ -127,7 +128,6 @@ void user_arm_1 () ;
 
 extern int user_arm_tray_1_tray_automatic           ; // 0 when button input works, 1 when target is down, 2 when target is up
 extern int user_arm_tray_1_arm_automatic            ; // 0 when button input works, 1 when target is down
-extern int user_arm_tray_1_arm_down_button_duration ; // how long the arm down button has been pressed for
 
 void user_arm_tray_1 ();
 

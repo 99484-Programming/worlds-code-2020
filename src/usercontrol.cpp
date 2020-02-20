@@ -306,25 +306,15 @@ void user_arm_1()
 // arm and tray control 1 - simple combined control ===============================================
 int user_arm_tray_1_tray_automatic = 0; // 0 when button input works, 1 when target is down, 2 when target is up
 int user_arm_tray_1_arm_automatic = 0; // 0 when button input works, 1 when target is down
-int user_arm_tray_1_arm_down_button_duration = 0; // how long the arm down button has been pressed for
 
 void user_arm_tray_1 ()
 {
-  if (user_arm_tray_1_arm_down) // update arm_down_button_duration variable
-  {
-    user_arm_tray_1_arm_down_button_duration += 20;
-  }
-  else
-  {
-    user_arm_tray_1_arm_down_button_duration = 0;
-  }
-
   if (user_arm_tray_1_arm_up) // button input for automatic tray and arm control
   {
     user_arm_tray_1_tray_automatic = 2;
     user_arm_tray_1_arm_automatic = 0;
   }
-  else if (user_arm_tray_1_arm_down_button_duration >= 500)
+  else if (user_arm_tray_1_arm_down_duration >= 500)
   {
     user_arm_tray_1_tray_automatic = 1;
     user_arm_tray_1_arm_automatic = 1;
