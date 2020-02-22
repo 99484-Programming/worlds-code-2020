@@ -458,14 +458,53 @@ void user_TIA_1()
   {
     if (user_TIA_tray_automatic == 1) // tray target down
     {
-      if (tray.rotation_get() > user_TIA_tray_pos_1 /* down position */ && arm.rotation_get() < user_TIA_arm_pos_4 /* safety pos 1*/)
+      if (tray.rotation_get() > user_TIA_tray_pos_1 /* down position */ && arm.rotation_get() < user_TIA_arm_pos_4 /* safety pos 1 */)
       {
-        
+        if (tray.rotation_get() > user_TIA_tray_pos_3 /* slow down position */)
+        {
+          tray.set_target(-user_TIA_tray_pwr_5 /* fast auto power */);
+        }
+        else
+        {
+          tray.set_target(-user_TIA_tray_pwr_6) /* slow auto power */;
+        }
+      }
+      else if (tray.rotation_get() > user_TIA_tray_pos_1) // if the tray is up but shouldn't move because of the arm
+      {
+        tray.set_target(0);
+      }
+      else if (tray.rotation_get() <= user_TIA_tray_pos_1) // if the tray is down; back to usercontrol
+      {
+        tray.set_target(0);
+        user_arm_tray_1_tray_automatic = 0;
+      }
+      else // should never happen
+      {
+        tray.set_target(0);
       }
     }
     else if (user_TIA_tray_automatic == 2) // tray target up
     {
-      
+      if (tray.rotation_get() < user_TIA_tray_pos_5 /* safe position 2 */) // if the tray is too low
+      {
+        if (tray.rotation_get() < user_TIA_tray_pos_4 /* safe position 1 */)
+        {
+          tray.set_target(user_TIA_tray_pwr_5 /* auto fast power */);
+        }
+        else
+        {
+          // linearly decrease the power as it reaches the target position
+          tray.set_target(user_TIA_tray_pwr_6 + (user_TIA_tray_pwr_5 - user_TIA_tray_pwr_6)*(1 - (tray.rotation_get() - user_TIA_tray_pos_4)/(user_TIA_tray_pos_5 - user_TIA_tray_pos_4)));
+        }
+      }
+      else if (tray.rotation_get() > user_TIA_tray_pos_5 + user_TIA_tray_moe) // if the tray is too high
+      {
+        tray.set_target(-user_TIA_tray_pwr_6 /* auto slow power */);
+      }
+      else // if the tray is just right
+      {
+        tray.set_target(0);
+      }
     }
     else // if the tray_automatic has done something funky, go back to usercontrol
     {
