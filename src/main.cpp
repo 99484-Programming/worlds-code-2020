@@ -1,3 +1,4 @@
+// for fixing arm and tray code v1 to keep the arm and tray from getting stuck on each other
 #include "vex.h"
 #include "pragma.h"
 #include "controller.h"
