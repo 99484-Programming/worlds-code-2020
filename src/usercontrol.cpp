@@ -428,8 +428,49 @@ void user_arm_tray_1 ()
 }
 
 // TIA control 1 - tray, intake, and arm combined control =========================================
+int user_TIA_tray_automatic = 0;   // 0 when button input works, 1 when target is down, 2 when target is up
+int user_TIA_arm_automatic = 0;    // 0 when button input works, 1 when target is down
+int user_TIA_intake_automatic = 0; // 0 when button input works, 1 when outtaking automatically
+int user_TIA_intake_automatic_timer = 0; // to track how long the intake should outtake while stacking
 
 void user_TIA_1()
 {
-  
+  // update automatic variables =================
+  if (user_TIA_arm_up)
+  {
+    user_TIA_arm_automatic = 0;
+    user_TIA_tray_automatic = 2;
+    user_TIA_intake_automatic = 0;
+  }
+  if (user_TIA_arm_down_duration > user_TIA_arm_down_duration_constant)
+  {
+    user_TIA_arm_automatic = 1;
+    user_TIA_tray_automatic = 1;
+    user_TIA_intake_automatic = 0;
+  }
+  if (user_TIA_tray_up && user_TIA_tray_automatic == 0)
+  {
+    user_TIA_intake_automatic = 1;
+  }
+
+  // tray control ===============================
+  if (user_TIA_tray_automatic != 0) // automatic tray control
+  {
+    if (user_TIA_tray_automatic == 1)
+    {
+
+    }
+    else if (user_TIA_tray_automatic == 2)
+    {
+      
+    }
+    else
+    {
+      user_TIA_tray_automatic = 0;
+    }
+  }
+  else // tray usercontrol ======================
+  {
+    
+  }
 }

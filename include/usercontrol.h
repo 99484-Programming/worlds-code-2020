@@ -134,6 +134,7 @@ void user_arm_tray_1 ();
 // TIA control 1 - tray, intake, and arm combined control =========================================
 // controller mapping ===========================
 #define user_TIA_tray_up           ctlr_buttonRIGHT
+#define user_TIA_tray_up_pressed   ctlr_buttonRIGHT_pressed
 #define user_TIA_tray_down         ctlr_buttonDOWN
 #define user_TIA_arm_up            ctlr_buttonY
 #define user_TIA_arm_down          ctlr_buttonB
@@ -184,8 +185,11 @@ void user_arm_tray_1 ();
 #define user_TIA_intake_pwr_4 -30 // (auto) stacking outtake power
 
 // margin of error values =======================
-#define user_TIA_tray_moe 50 // ===========================================================
-#define user_TIA_arm_moe  25 // ===========================================================
+#define user_TIA_tray_moe 50 // default margin of error for tray position constants
+#define user_TIA_arm_moe  25 // default margin of error for arm position constants
+
+// other ========================================
+#define user_TIA_arm_down_duration_constant 500 // how long the arm down button has to be pushed down for the automatic control to be engaged
 
 void user_TIA_1();
 
