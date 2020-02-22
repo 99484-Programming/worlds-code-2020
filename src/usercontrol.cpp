@@ -456,15 +456,18 @@ void user_TIA_1()
   // tray control ===============================
   if (user_TIA_tray_automatic != 0) // automatic tray control
   {
-    if (user_TIA_tray_automatic == 1)
+    if (user_TIA_tray_automatic == 1) // tray target down
     {
-
+      if (tray.rotation_get() > user_TIA_tray_pos_1 /* down position */ && arm.rotation_get() < user_TIA_arm_pos_4 /* safety pos 1*/)
+      {
+        
+      }
     }
-    else if (user_TIA_tray_automatic == 2)
+    else if (user_TIA_tray_automatic == 2) // tray target up
     {
       
     }
-    else
+    else // if the tray_automatic has done something funky, go back to usercontrol
     {
       user_TIA_tray_automatic = 0;
     }

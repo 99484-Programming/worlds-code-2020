@@ -169,7 +169,7 @@ Discarded input sections
  .ARM.exidx.text._Z10user_arm_1v
                 0x0000000000000000        0x8 build/src/usercontrol.o
  .text._Z10user_TIA_1v
-                0x0000000000000000        0x4 build/src/usercontrol.o
+                0x0000000000000000      0x110 build/src/usercontrol.o
  .ARM.exidx.text._Z10user_TIA_1v
                 0x0000000000000000        0x8 build/src/usercontrol.o
  .data.user_arcade_1_mode
@@ -181,6 +181,14 @@ Discarded input sections
  .bss.user_tray_3_setup_done
                 0x0000000000000000        0x1 build/src/usercontrol.o
  .bss.user_tray_3_setup_count
+                0x0000000000000000        0x4 build/src/usercontrol.o
+ .bss.user_TIA_tray_automatic
+                0x0000000000000000        0x4 build/src/usercontrol.o
+ .bss.user_TIA_arm_automatic
+                0x0000000000000000        0x4 build/src/usercontrol.o
+ .bss.user_TIA_intake_automatic
+                0x0000000000000000        0x4 build/src/usercontrol.o
+ .bss.user_TIA_intake_automatic_timer
                 0x0000000000000000        0x4 build/src/usercontrol.o
  .llvm_addrsig  0x0000000000000000        0x5 build/src/usercontrol.o
  .text          0x0000000000000000        0x0 build/src/autonomous/functions.o
