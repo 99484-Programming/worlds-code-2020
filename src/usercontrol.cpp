@@ -513,6 +513,24 @@ void user_TIA_1()
   }
   else // tray usercontrol ======================
   {
-    
+    if (user_TIA_tray_up && !user_TIA_tray_down) // tray up
+    {
+      if (tray.rotation_get() < user_TIA_tray_pos_6 /* slow down position (user) */)
+      {
+        tray.set_target(user_TIA_tray_pwr_1 /* fast up pwr */);
+      }
+      else if (tray.rotation_get() < user_TIA_tray_pos_7 /* tray up position */)
+      {
+        tray.set_target(user_TIA_tray_pwr_2 + (user_TIA_tray_pwr_1 - user_TIA_tray_pwr_2) * (1 - (tray.rotation_get() - user_TIA_tray_pos_6)/(user_TIA_tray_pos_7 - user_TIA_tray_pos_6)));
+      }
+    }
+    else if (user_TIA_tray_down && !user_TIA_tray_up) // tray down
+    {
+
+    }
+    else // no valid usercontrol input for the tray
+    {
+      tray.set_target(0);
+    }
   }
 }
