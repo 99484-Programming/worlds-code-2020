@@ -63,7 +63,6 @@ void auton_route_1 ()
   //flip out starts 
   intake(-100);
   tilt(-5);
-  sleep(2000);
   sleep(1800);
 
   sleep(20);
@@ -138,10 +137,94 @@ void auton_route_2 ()
 }
 
 
-// RED grab a couple cubes (15 seconds) [protected]
+// 7-8 point 15 second red autonomous
+
 void auton_route_3 ()
 {
-  
+  //flip out starts 
+  intake(-100);
+  tilt(-5);
+  sleep(1800);
+
+  //grab 5 cubes (4 bubes for now)
+  right_back.resetRotation();
+  if (right_back.rotation_get()<0)
+  {
+    Chassis_forward(40);
+    intake(100);
+  }
+
+  sleep(20);
+
+  //s-line curve-ish move
+  right_back.resetRotation();
+  if (right_back.rotation_get()<0)
+  {
+    Chassis_forward(-40);
+    intake(100);
+  }
+
+  sleep(20);
+
+  right_back.resetRotation();
+  if (right_back.rotation_get()<0)
+ {
+   Chassis_right(40);
+   intake(100);
+ }
+
+  sleep(20);
+
+  right_back.resetRotation();
+  if (right_back.rotation_get()<0)
+  {
+    Chassis_forward(-100);
+    intake(100);
+  }
+
+  //intake 4-5 cubes 
+  right_back.resetRotation();
+  if (right_back.rotation_get()<0)
+  {
+    Chassis_forward(40);
+    intake(100);
+  }
+
+  sleep(20);
+
+  //going back - turn towards the unprotected zone
+  right_back.resetRotation();
+  if (right_back.rotation_get()<0)
+  {
+    Chassis_left(40);
+    intake(100);
+  }
+
+  sleep(20);
+
+  //go towards the zone
+  right_back.resetRotation();
+  if (right_back.rotation_get()<0)
+  {
+    Chassis_right(40);
+    intake(100);
+  }
+
+  sleep(20);
+
+  //tray 
+  right_back.resetRotation();
+  if (tray.rotation_get()<0)
+  {
+    a_stack();
+  }
+
+  sleep(20);
+
+  Chassis_forward(-40);
+  sleep(500);
+
+  stop();
 }
 
 // 5 points blue (15 seconds) [unprotected]
