@@ -314,7 +314,7 @@ void user_arm_tray_1 ()
     user_arm_tray_1_tray_automatic = 2;
     user_arm_tray_1_arm_automatic = 0;
   }
-  else if (user_arm_tray_1_arm_down_duration >= 500)
+  else if (user_arm_tray_1_arm_down_duration >= 750)
   {
     user_arm_tray_1_tray_automatic = 1;
     user_arm_tray_1_arm_automatic = 1;
@@ -412,7 +412,7 @@ void user_arm_tray_1 ()
   }
   else // usercontrol
   {
-    if (user_arm_tray_1_arm_up)
+    if (user_arm_tray_1_arm_up && tray.rotation_get() > user_arm_tray_1_tray_2)
     {
       arm.set_target(user_arm_tray_1_arm_up_pwr);
     }
