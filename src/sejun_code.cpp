@@ -32,8 +32,6 @@ void tilt(int power)
   tray.spin(directionType::fwd, power, velocityUnits::pct);
 }
 
-
-
 void rstop(void)
 {
   right_back.stop();

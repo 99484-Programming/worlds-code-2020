@@ -387,7 +387,7 @@ Discarded input sections
  .ARM.exidx.text._Z13auton_route_0v
                 0x0000000000000000        0x8 build/src/autonomous/routes.o
  .text._Z13auton_route_1v
-                0x0000000000000000      0x1e8 build/src/autonomous/routes.o
+                0x0000000000000000      0x1e0 build/src/autonomous/routes.o
  .ARM.exidx.text._Z13auton_route_1v
                 0x0000000000000000        0x8 build/src/autonomous/routes.o
  .text._Z13auton_route_2v
@@ -395,7 +395,7 @@ Discarded input sections
  .ARM.exidx.text._Z13auton_route_2v
                 0x0000000000000000        0x8 build/src/autonomous/routes.o
  .text._Z13auton_route_3v
-                0x0000000000000000        0x4 build/src/autonomous/routes.o
+                0x0000000000000000      0x224 build/src/autonomous/routes.o
  .ARM.exidx.text._Z13auton_route_3v
                 0x0000000000000000        0x8 build/src/autonomous/routes.o
  .text._Z13auton_route_4v
