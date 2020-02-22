@@ -426,3 +426,10 @@ void user_arm_tray_1 ()
     }
   }
 }
+
+// TIA control 1 - tray, intake, and arm combined control =========================================
+
+void user_TIA_1()
+{
+  
+}

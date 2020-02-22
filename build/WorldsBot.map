@@ -168,6 +168,10 @@ Discarded input sections
                 0x0000000000000000       0x48 build/src/usercontrol.o
  .ARM.exidx.text._Z10user_arm_1v
                 0x0000000000000000        0x8 build/src/usercontrol.o
+ .text._Z10user_TIA_1v
+                0x0000000000000000        0x4 build/src/usercontrol.o
+ .ARM.exidx.text._Z10user_TIA_1v
+                0x0000000000000000        0x8 build/src/usercontrol.o
  .data.user_arcade_1_mode
                 0x0000000000000000        0x4 build/src/usercontrol.o
  .bss.user_arcade_1_l
