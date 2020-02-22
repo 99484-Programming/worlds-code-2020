@@ -369,6 +369,7 @@ void user_arm_tray_1 ()
       if (tray.rotation_get() < user_arm_tray_1_tray_4) // stage 1
       {
         tray.set_target(user_arm_tray_1_tray_up_pwr_1); // fastest usercontrol power
+        intake_set(-30);
       }
       else if (tray.rotation_get() < user_arm_tray_1_tray_5) // stage 2
       {
