@@ -620,6 +620,20 @@ void user_TIA_1()
         user_TIA_intake_automatic_timer += 20;
       }
     }
+    else if (user_TIA_intake_automatic == -1)
+    {
+      intake_set(-100);
+
+      if (user_TIA_intake_automatic_timer < 1000)
+      {
+        user_TIA_intake_automatic_timer += 20;
+      }
+      else
+      {
+        intake_set(0);
+        user_TIA_intake_automatic = 0;
+      }
+    }
     else
     {
       user_TIA_intake_automatic = 0; // back to usercontrol for the intake

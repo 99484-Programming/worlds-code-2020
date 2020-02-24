@@ -89,17 +89,17 @@ void usercontrol( void )
     motors_update_rotation_vars();
 
     // usercontrol
-    if (time < 1000)
-    {
-      intake(-100);
-    }
-    else
-    {
-    user_intake_2();
-    }
+    // if (time < 1000)
+    // {
+    //   intake(-100);
+    // }
+    // else
+    // {
+    // user_intake_2();
+    // }
 
     user_tank_2();
-    user_arm_tray_1();
+    user_TIA_1();
 
     // slew rate & such
     motors_update_vars();
