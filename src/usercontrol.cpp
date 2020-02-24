@@ -450,6 +450,7 @@ void user_TIA_1()
   }
   if (user_TIA_tray_up && user_TIA_tray_automatic == 0)
   {
+    user_TIA_arm_automatic = 1;
     user_TIA_intake_automatic = 1;
   }
 
@@ -515,22 +516,66 @@ void user_TIA_1()
   {
     if (user_TIA_tray_up && !user_TIA_tray_down) // tray up
     {
-      if (tray.rotation_get() < user_TIA_tray_pos_6 /* slow down position (user) */)
+      if (tray.rotation_get() < user_TIA_tray_pos_6 /* slow down position (user) */) // normal up speed
       {
         tray.set_target(user_TIA_tray_pwr_1 /* fast up pwr */);
       }
-      else if (tray.rotation_get() < user_TIA_tray_pos_7 /* tray up position */)
+      else if (tray.rotation_get() < user_TIA_tray_pos_7 /* tray up position */) // slowing down to stack
       {
         tray.set_target(user_TIA_tray_pwr_2 + (user_TIA_tray_pwr_1 - user_TIA_tray_pwr_2) * (1 - (tray.rotation_get() - user_TIA_tray_pos_6)/(user_TIA_tray_pos_7 - user_TIA_tray_pos_6)));
+      }
+      else if (tray.rotation_get() > user_TIA_tray_pos_8 /* limit */)
+      {
+        tray.set_target(user_TIA_tray_pwr_4 /* slow down power (user) */);
+      }
+      else
+      {
+        tray.set_target(0);
       }
     }
     else if (user_TIA_tray_down && !user_TIA_tray_up) // tray down
     {
-
+      if (tray.rotation_get() > user_TIA_tray_pos_2 /* user slowdown pos */) // fast down
+      {
+        tray.set_target(user_TIA_tray_pwr_3 /* fast down power */);
+      }
+      else if (tray.rotation_get() > user_TIA_tray_pos_1) // slow down
+      {
+        tray.set_target(user_TIA_tray_pwr_4);
+      }
+      else
+      {
+        tray.set_target(0);
+      }
     }
     else // no valid usercontrol input for the tray
     {
       tray.set_target(0);
+    }
+  }
+
+  // arm control ================================
+  if (user_TIA_arm_automatic != 0) // automatic arm control
+  {
+    if (user_TIA_arm_automatic == 1) // arm target down
+    {
+      if (arm.rotation_get() > user_TIA_arm_pos_4 /* tray safety pos (minor) */)
+      {
+        arm.set_target(-user_TIA_arm_pwr_4);
+      }
+      else if (arm.rotation_get() > user_TIA_arm_pos_2 /* slow down pos */)
+      {
+        arm.set_target(-user_TIA_arm_pwr_5);
+      }
+      else
+      {
+        arm.set_target(0);
+        user_TIA_arm_automatic = 0;
+      }
+    }
+    else // if the code messed up somehow, revert back to usercontrol
+    {
+      user_TIA_arm_automatic = 0;
     }
   }
 }

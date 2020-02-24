@@ -133,15 +133,16 @@ void user_arm_tray_1 ();
 
 // TIA control 1 - tray, intake, and arm combined control =========================================
 // controller mapping ===========================
-#define user_TIA_tray_up           ctlr_buttonRIGHT
-#define user_TIA_tray_up_pressed   ctlr_buttonRIGHT_pressed
-#define user_TIA_tray_down         ctlr_buttonDOWN
-#define user_TIA_arm_up            ctlr_buttonY
-#define user_TIA_arm_down          ctlr_buttonB
-#define user_TIA_arm_down_duration ctlr_buttonB_duration
-#define user_TIA_intake_in_fast    ctlr_buttonR1
-#define user_TIA_intake_in_slow    ctlr_buttonL2
-#define user_TIA_intake_out        ctlr_buttonR2
+#define user_TIA_tray_up            ctlr_buttonRIGHT
+#define user_TIA_tray_up_pressed    ctlr_buttonRIGHT_pressed
+#define user_TIA_tray_down          ctlr_buttonDOWN
+#define user_TIA_tray_down_duration ctlr_buttonDOWN_duration
+#define user_TIA_arm_up             ctlr_buttonY
+#define user_TIA_arm_down           ctlr_buttonB
+#define user_TIA_arm_down_duration  ctlr_buttonB_duration
+#define user_TIA_intake_in_fast     ctlr_buttonR1
+#define user_TIA_intake_in_slow     ctlr_buttonL2
+#define user_TIA_intake_out         ctlr_buttonR2
 
 // tray positions ===============================
 #define user_TIA_tray_pos_1 0 // (u & a) down position
@@ -154,6 +155,14 @@ void user_arm_tray_1 ();
 #define user_TIA_tray_pos_8 0 // (user)  tray up limit: the tray shouldn't go farther than this
 #define user_TIA_tray_pos_9 0 // (user)  tray physical limit: the physical limit for movement of the tray
 
+// tray motor powers ============================
+#define user_TIA_tray_pwr_1 0 // (user) fast up power
+#define user_TIA_tray_pwr_2 0 // (user) slow up power
+#define user_TIA_tray_pwr_3 0 // (user) fast down power
+#define user_TIA_tray_pwr_4 0 // (user) slow down power
+#define user_TIA_tray_pwr_5 0 // (auto) auto fast
+#define user_TIA_tray_pwr_6 0 // (auto) auto slow
+
 // arm positions ================================
 #define user_TIA_arm_pos_1 0 // (u & a) down position
 #define user_TIA_arm_pos_2 0 // (u & a) slow down: for going down
@@ -162,14 +171,6 @@ void user_arm_tray_1 ();
 #define user_TIA_arm_pos_5 0 // (user)  lower tower
 #define user_TIA_arm_pos_6 0 // (user)  middle tower
 #define user_TIA_arm_pos_7 0 // (user)  upper limit
-
-// tray motor powers ============================
-#define user_TIA_tray_pwr_1 0 // (user) fast up power
-#define user_TIA_tray_pwr_2 0 // (user) slow up power
-#define user_TIA_tray_pwr_3 0 // (user) fast down power
-#define user_TIA_tray_pwr_4 0 // (user) slow down power
-#define user_TIA_tray_pwr_5 0 // (auto) auto fast
-#define user_TIA_tray_pwr_6 0 // (auto) auto slow
 
 // arm motor powers =============================
 #define user_TIA_arm_pwr_1 0 // (user) fast up power
