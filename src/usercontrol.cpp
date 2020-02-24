@@ -428,10 +428,10 @@ void user_arm_tray_1 ()
 }
 
 // TIA control 1 - tray, intake, and arm combined control =========================================
-int user_TIA_tray_automatic = 0;   // 0 when button input works, 1 when target is down, 2 when target is up
-int user_TIA_arm_automatic = 0;    // 0 when button input works, 1 when target is down
-int user_TIA_intake_automatic = 0; // 0 when button input works, 1 when outtaking automatically
-int user_TIA_intake_automatic_timer = 0; // to track how long the intake should outtake while stacking
+int user_TIA_tray_automatic         =  0; // 0 when button input works, 1 when target is down, 2 when target is up
+int user_TIA_arm_automatic          =  0; // 0 when button input works, 1 when target is down
+int user_TIA_intake_automatic       =  0; // 0 when button input works, 1 when outtaking automatically
+int user_TIA_intake_automatic_timer = -1; // to track how long the intake should outtake while stacking
 
 void user_TIA_1()
 {
@@ -450,8 +450,16 @@ void user_TIA_1()
   }
   if (user_TIA_tray_up && user_TIA_tray_automatic == 0)
   {
+    if (user_TIA_tray_up_pressed)
+    {
+      user_TIA_intake_automatic = 1;
+      user_TIA_intake_automatic_timer = 0;
+    }
     user_TIA_arm_automatic = 1;
-    user_TIA_intake_automatic = 1;
+  }
+  if (user_TIA_tray_down_duration > user_TIA_tray_down_duration_constant && user_TIA_tray_automatic == 0)
+  {
+    user_TIA_tray_automatic = 0;
   }
 
   // tray control ===============================
@@ -576,6 +584,64 @@ void user_TIA_1()
     else // if the code messed up somehow, revert back to usercontrol
     {
       user_TIA_arm_automatic = 0;
+    }
+  }
+  else // arm usercontrol =======================
+  {
+    if (user_TIA_arm_up)
+    {
+      arm.set_target(user_TIA_arm_pwr_1);
+    }
+    else if (user_TIA_arm_down)
+    {
+      arm.set_target(user_TIA_arm_pwr_2);
+    }
+    else
+    {
+      arm.set_target(0);
+    }
+  }
+
+  // intake control =============================
+  if (user_TIA_intake_automatic != 0) // automatic intake control
+  {
+    if (user_TIA_intake_automatic == 1)
+    {
+      if (user_TIA_intake_automatic_timer >= user_TIA_auto_outtake_duration)
+      {
+        user_TIA_intake_automatic = 0;
+        user_TIA_intake_automatic_timer = 0;
+      }
+
+      intake_set(user_TIA_intake_pwr_4);
+
+      if (user_TIA_intake_automatic == 1)
+      {
+        user_TIA_intake_automatic_timer += 20;
+      }
+    }
+    else
+    {
+      user_TIA_intake_automatic = 0; // back to usercontrol for the intake
+    }
+  }
+  else // intake usercontrol
+  {
+    if (ctlr_buttonR1) // fast intaking
+    {
+      intake_set(user_TIA_intake_pwr_1);
+    }
+    else if (ctlr_buttonL1) // slow intake
+    {
+      intake_set(user_TIA_intake_pwr_2);
+    }
+    else if (ctlr_buttonR2) // outtaking
+    {
+      intake_set(user_TIA_intake_pwr_3);
+    }
+    else
+    {
+      intake_set(0);
     }
   }
 }

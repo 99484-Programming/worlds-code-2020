@@ -190,7 +190,15 @@ void user_arm_tray_1 ();
 #define user_TIA_arm_moe  25 // default margin of error for arm position constants
 
 // other ========================================
-#define user_TIA_arm_down_duration_constant 500 // how long the arm down button has to be pushed down for the automatic control to be engaged
+#define user_TIA_arm_down_duration_constant  500 // how long the arm down button has to be pressed down for the automatic control to be engaged
+#define user_TIA_tray_down_duration_constant 500 // how long the tray down button has to be pressed down for the automatic control to be engaged
+#define user_TIA_auto_outtake_duration       500 // how long the intake outtakes when stacking
+
+// variables ====================================
+extern int user_TIA_tray_automatic         ; // 0 when button input works, 1 when target is down, 2 when target is up
+extern int user_TIA_arm_automatic          ; // 0 when button input works, 1 when target is down
+extern int user_TIA_intake_automatic       ; // 0 when button input works, 1 when outtaking automatically, -1 for flip out
+extern int user_TIA_intake_automatic_timer ; // to track how long the intake should outtake while stacking
 
 void user_TIA_1();
 
