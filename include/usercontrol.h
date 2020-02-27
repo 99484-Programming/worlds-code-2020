@@ -145,39 +145,39 @@ void user_arm_tray_1 ();
 #define user_TIA_intake_out         ctlr_buttonR2
 
 // tray positions ===============================
-#define user_TIA_tray_pos_1 0 // (u & a) down position
-#define user_TIA_tray_pos_2 0 // (user)  slow down: for going down
-#define user_TIA_tray_pos_3 0 // (auto)  slow down: for going down
-#define user_TIA_tray_pos_4 0 // (auto)  arm safety position: where the arm can start moving
-#define user_TIA_tray_pos_5 0 // (auto)  arm safety position: where the arm has full range of movement
-#define user_TIA_tray_pos_6 0 // (user)  tray slow position: where the tray starts slowing down
-#define user_TIA_tray_pos_7 0 // (user)  tray up position: where the tray is the slowest
-#define user_TIA_tray_pos_8 0 // (user)  tray up limit: the tray shouldn't go farther than this
-#define user_TIA_tray_pos_9 0 // (user)  tray physical limit: the physical limit for movement of the tray
+#define user_TIA_tray_pos_1   50 // (u & a) down position
+#define user_TIA_tray_pos_2  300 // (user)  slow down: for going down
+#define user_TIA_tray_pos_3  300 // (auto)  slow down: for going down
+#define user_TIA_tray_pos_4 1000 // (auto)  arm safety position: where the arm can start moving
+#define user_TIA_tray_pos_5 1500 // (auto)  arm safety position: where the arm has full range of movement
+#define user_TIA_tray_pos_6 1750 // (user)  tray slow position: where the tray starts slowing down
+#define user_TIA_tray_pos_7 2750 // (user)  tray up position: where the tray is the slowest
+#define user_TIA_tray_pos_8 2850 // (user)  tray up limit: the tray shouldn't go farther than this
+#define user_TIA_tray_pos_9 0000 // (user)  tray physical limit: the physical limit for movement of the tray
 
 // tray motor powers ============================
-#define user_TIA_tray_pwr_1 0 // (user) fast up power
-#define user_TIA_tray_pwr_2 0 // (user) slow up power
-#define user_TIA_tray_pwr_3 0 // (user) fast down power
-#define user_TIA_tray_pwr_4 0 // (user) slow down power
-#define user_TIA_tray_pwr_5 0 // (auto) auto fast
-#define user_TIA_tray_pwr_6 0 // (auto) auto slow
+#define user_TIA_tray_pwr_1 100 // (user) fast up power
+#define user_TIA_tray_pwr_2  20 // (user) slow up power
+#define user_TIA_tray_pwr_3 -90 // (user) fast down power
+#define user_TIA_tray_pwr_4 -40 // (user) slow down power
+#define user_TIA_tray_pwr_5  95 // (auto) auto fast
+#define user_TIA_tray_pwr_6  40 // (auto) auto slow
 
 // arm positions ================================
-#define user_TIA_arm_pos_1 0 // (u & a) down position
-#define user_TIA_arm_pos_2 0 // (u & a) slow down: for going down
-#define user_TIA_arm_pos_3 0 // (auto)  tray safety position: where the tray has full range of movement
-#define user_TIA_arm_pos_4 0 // (auto)  tray safety position: where the tray can start to go down
-#define user_TIA_arm_pos_5 0 // (user)  lower tower
-#define user_TIA_arm_pos_6 0 // (user)  middle tower
-#define user_TIA_arm_pos_7 0 // (user)  upper limit
+#define user_TIA_arm_pos_1   50 // (u & a) down position
+#define user_TIA_arm_pos_2  200 // (u & a) slow down: for going down
+#define user_TIA_arm_pos_3  300 // (auto)  tray safety position: where the tray has full range of movement
+#define user_TIA_arm_pos_4  750 // (auto)  tray safety position: where the tray can start to go down
+#define user_TIA_arm_pos_5 1300 // (user)  lower tower
+#define user_TIA_arm_pos_6 1700 // (user)  middle tower
+#define user_TIA_arm_pos_7 2000 // (user)  upper limit
 
 // arm motor powers =============================
-#define user_TIA_arm_pwr_1 0 // (user) fast up power
-#define user_TIA_arm_pwr_2 0 // (user) fast down power
-#define user_TIA_arm_pwr_3 0 // (user) slow down power
-#define user_TIA_arm_pwr_4 0 // (auto) auto fast
-#define user_TIA_arm_pwr_5 0 // (auto) auto slow
+#define user_TIA_arm_pwr_1 100 // (user) fast up power
+#define user_TIA_arm_pwr_2 -90 // (user) fast down power
+#define user_TIA_arm_pwr_3 -40 // (user) slow down power
+#define user_TIA_arm_pwr_4  95 // (auto) auto fast
+#define user_TIA_arm_pwr_5  40 // (auto) auto slow
 
 // intake motor powers ==========================
 #define user_TIA_intake_pwr_1 100 // (user) fast intake
