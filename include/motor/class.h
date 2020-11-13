@@ -19,7 +19,8 @@
 #define TILTER_UPDATE_VARS_MODE   0
 
 class Motor: public vex::motor {
-  protected: // ===================================================================================
+  public:
+  // protected: // ===================================================================================
     std::string name;
     int brake_type; // -1 is vel ctrl, 0 is brake, 1 is coast, 2 is hold
     bool update_vars_mode; // 0 is direct, 1 is slew
@@ -28,7 +29,7 @@ class Motor: public vex::motor {
     int target_power, actual_power;
     double rotation_current, rotation_prev, rotation_change, rotation_initial;
     int slew_rate;
-  public: // ======================================================================================
+  // public: // ======================================================================================
     void set_target (int input) ;
 
     // update functions ===========================================================================

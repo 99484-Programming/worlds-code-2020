@@ -426,3 +426,236 @@ void user_arm_tray_1 ()
     }
   }
 }
+
+// TIA control 1 - tray, intake, and arm combined control =========================================
+int user_TIA_tray_automatic         =  0; // 0 when button input works, 1 when target is down, 2 when target is up
+int user_TIA_arm_automatic          =  0; // 0 when button input works, 1 when target is down
+int user_TIA_intake_automatic       =  0; // 0 when button input works, 1 when outtaking automatically
+int user_TIA_intake_automatic_timer = -1; // to track how long the intake should outtake while stacking
+
+void user_TIA_1()
+{
+  // update automatic variables =================
+  if (user_TIA_arm_up)
+  {
+    user_TIA_arm_automatic = 0;
+    user_TIA_tray_automatic = 2;
+    user_TIA_intake_automatic = 0;
+  }
+  if (user_TIA_arm_down_duration > user_TIA_arm_down_duration_constant)
+  {
+    user_TIA_arm_automatic = 1;
+    user_TIA_tray_automatic = 1;
+    user_TIA_intake_automatic = 0;
+  }
+  if (user_TIA_tray_up && user_TIA_tray_automatic == 0)
+  {
+    if (user_TIA_tray_up_pressed)
+    {
+      user_TIA_intake_automatic = 1;
+      user_TIA_intake_automatic_timer = 0;
+    }
+    user_TIA_arm_automatic = 1;
+  }
+  if (user_TIA_tray_down_duration > user_TIA_tray_down_duration_constant && user_TIA_tray_automatic == 0)
+  {
+    user_TIA_tray_automatic = 0;
+  }
+
+  // tray control ===============================
+  if (user_TIA_tray_automatic != 0) // automatic tray control
+  {
+    if (user_TIA_tray_automatic == 1) // tray target down
+    {
+      if (tray.rotation_get() > user_TIA_tray_pos_1 /* down position */ && arm.rotation_get() < user_TIA_arm_pos_4 /* safety pos 1 */)
+      {
+        if (tray.rotation_get() > user_TIA_tray_pos_3 /* slow down position */)
+        {
+          tray.set_target(-user_TIA_tray_pwr_5 /* fast auto power */);
+        }
+        else
+        {
+          tray.set_target(-user_TIA_tray_pwr_6) /* slow auto power */;
+        }
+      }
+      else if (tray.rotation_get() > user_TIA_tray_pos_1) // if the tray is up but shouldn't move because of the arm
+      {
+        tray.set_target(0);
+      }
+      else if (tray.rotation_get() <= user_TIA_tray_pos_1) // if the tray is down; back to usercontrol
+      {
+        tray.set_target(0);
+        user_arm_tray_1_tray_automatic = 0;
+      }
+      else // should never happen
+      {
+        tray.set_target(0);
+      }
+    }
+    else if (user_TIA_tray_automatic == 2) // tray target up
+    {
+      if (tray.rotation_get() < user_TIA_tray_pos_5 /* safe position 2 */) // if the tray is too low
+      {
+        if (tray.rotation_get() < user_TIA_tray_pos_4 /* safe position 1 */)
+        {
+          tray.set_target(user_TIA_tray_pwr_5 /* auto fast power */);
+        }
+        else
+        {
+          // linearly decrease the power as it reaches the target position
+          tray.set_target(user_TIA_tray_pwr_6 + (user_TIA_tray_pwr_5 - user_TIA_tray_pwr_6)*(1 - (tray.rotation_get() - user_TIA_tray_pos_4)/(user_TIA_tray_pos_5 - user_TIA_tray_pos_4)));
+        }
+      }
+      else if (tray.rotation_get() > user_TIA_tray_pos_5 + user_TIA_tray_moe) // if the tray is too high
+      {
+        tray.set_target(-user_TIA_tray_pwr_6 /* auto slow power */);
+      }
+      else // if the tray is just right
+      {
+        tray.set_target(0);
+      }
+    }
+    else // if the tray_automatic has done something funky, go back to usercontrol
+    {
+      user_TIA_tray_automatic = 0;
+    }
+  }
+  else // tray usercontrol ======================
+  {
+    if (user_TIA_tray_up && !user_TIA_tray_down) // tray up
+    {
+      if (tray.rotation_get() < user_TIA_tray_pos_6 /* slow down position (user) */) // normal up speed
+      {
+        tray.set_target(user_TIA_tray_pwr_1 /* fast up pwr */);
+      }
+      else if (tray.rotation_get() < user_TIA_tray_pos_7 /* tray up position */) // slowing down to stack
+      {
+        tray.set_target(user_TIA_tray_pwr_2 + (user_TIA_tray_pwr_1 - user_TIA_tray_pwr_2) * (1 - (tray.rotation_get() - user_TIA_tray_pos_6)/(user_TIA_tray_pos_7 - user_TIA_tray_pos_6)));
+      }
+      else if (tray.rotation_get() > user_TIA_tray_pos_8 /* limit */)
+      {
+        tray.set_target(user_TIA_tray_pwr_4 /* slow down power (user) */);
+      }
+      else
+      {
+        tray.set_target(0);
+      }
+    }
+    else if (user_TIA_tray_down && !user_TIA_tray_up) // tray down
+    {
+      if (tray.rotation_get() > user_TIA_tray_pos_2 /* user slowdown pos */) // fast down
+      {
+        tray.set_target(user_TIA_tray_pwr_3 /* fast down power */);
+      }
+      else if (tray.rotation_get() > user_TIA_tray_pos_1) // slow down
+      {
+        tray.set_target(user_TIA_tray_pwr_4);
+      }
+      else
+      {
+        tray.set_target(0);
+      }
+    }
+    else // no valid usercontrol input for the tray
+    {
+      tray.set_target(0);
+    }
+  }
+
+  // arm control ================================
+  if (user_TIA_arm_automatic != 0) // automatic arm control
+  {
+    if (user_TIA_arm_automatic == 1) // arm target down
+    {
+      if (arm.rotation_get() > user_TIA_arm_pos_4 /* tray safety pos (minor) */)
+      {
+        arm.set_target(-user_TIA_arm_pwr_4);
+      }
+      else if (arm.rotation_get() > user_TIA_arm_pos_2 /* slow down pos */)
+      {
+        arm.set_target(-user_TIA_arm_pwr_5);
+      }
+      else
+      {
+        arm.set_target(0);
+        user_TIA_arm_automatic = 0;
+      }
+    }
+    else // if the code messed up somehow, revert back to usercontrol
+    {
+      user_TIA_arm_automatic = 0;
+    }
+  }
+  else // arm usercontrol =======================
+  {
+    if (user_TIA_arm_up)
+    {
+      arm.set_target(user_TIA_arm_pwr_1);
+    }
+    else if (user_TIA_arm_down)
+    {
+      arm.set_target(user_TIA_arm_pwr_2);
+    }
+    else
+    {
+      arm.set_target(0);
+    }
+  }
+
+  // intake control =============================
+  if (user_TIA_intake_automatic != 0) // automatic intake control
+  {
+    if (user_TIA_intake_automatic == 1)
+    {
+      if (user_TIA_intake_automatic_timer >= user_TIA_auto_outtake_duration)
+      {
+        user_TIA_intake_automatic = 0;
+        user_TIA_intake_automatic_timer = 0;
+      }
+
+      intake_set(user_TIA_intake_pwr_4);
+
+      if (user_TIA_intake_automatic == 1)
+      {
+        user_TIA_intake_automatic_timer += 20;
+      }
+    }
+    else if (user_TIA_intake_automatic == -1)
+    {
+      intake_set(-100);
+
+      if (user_TIA_intake_automatic_timer < 1000)
+      {
+        user_TIA_intake_automatic_timer += 20;
+      }
+      else
+      {
+        intake_set(0);
+        user_TIA_intake_automatic = 0;
+      }
+    }
+    else
+    {
+      user_TIA_intake_automatic = 0; // back to usercontrol for the intake
+    }
+  }
+  else // intake usercontrol
+  {
+    if (ctlr_buttonR1) // fast intaking
+    {
+      intake_set(user_TIA_intake_pwr_1);
+    }
+    else if (ctlr_buttonL1) // slow intake
+    {
+      intake_set(user_TIA_intake_pwr_2);
+    }
+    else if (ctlr_buttonR2) // outtaking
+    {
+      intake_set(user_TIA_intake_pwr_3);
+    }
+    else
+    {
+      intake_set(0);
+    }
+  }
+}

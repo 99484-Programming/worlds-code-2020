@@ -1,3 +1,4 @@
+// adding arm_tray_intake_1()
 #include "vex.h"
 #include "pragma.h"
 #include "controller.h"
@@ -78,7 +79,6 @@ void usercontrol( void )
   
   arm.setBrake(vex::brakeType::hold);
   tray.setBrake(vex::brakeType::hold);
-  int time = 0;
 
   while (true)
   {
@@ -87,18 +87,8 @@ void usercontrol( void )
     ctlr_updateVars();
     motors_update_rotation_vars();
 
-    // usercontrol
-    if (time < 1000)
-    {
-      intake(-100);
-    }
-    else
-    {
-    user_intake_2();
-    }
-
     user_tank_2();
-    user_arm_tray_1();
+    user_TIA_1();
 
     // slew rate & such
     motors_update_vars();
@@ -111,7 +101,6 @@ void usercontrol( void )
 
     //Sleep the task for a short amount of time to prevent wasted resources. 
     vex::task::sleep(20);
-    time += 20;
   }
 }
 
